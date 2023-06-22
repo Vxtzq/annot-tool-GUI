@@ -48,6 +48,7 @@ bg = pygame.transform.scale(bg,((1200,900)))
 bgRect = bg.get_rect()
 pygame.display.set_icon(icon)
 
+
 try:
     ids = [[]]
     
@@ -116,9 +117,7 @@ try:
                 namesid[0] = (namesid[0][0],namesid[0][1])
                 imglist.append((file,0))
                 
-            
     
-
     
     
     mousex = 0
@@ -160,6 +159,7 @@ try:
 
     def okmenu():
         global on, text,okclick,namesid
+        
         if text != "":
             
             names = fast_scandir(text)
@@ -172,8 +172,9 @@ try:
                 element = element.replace("/*","")
                 element = element.replace("/","")
                 namesid.append((element,0))
-        
+            
             class_num = 0
+            
             for i in range(len(names)):
         
         
@@ -244,10 +245,13 @@ try:
                 previousclick = 1
                 
                 
-    try:   
+    try:
         currentid = imglist[0][1]
     except:
-        error("This may occur if the dataset used is located directly in 'images/'.","Try creating a folder (e. g, 'images/dataset/')")
+        if on == False:
+             
+             currentid = imglist[0][1]
+    
 
         
     nextclick = 0
@@ -433,13 +437,6 @@ try:
             testpercent = slider.getValue()
             togglevalue = toggle.getValue()
             
-            """
-            img = pygame.image.load(imglist[imgnum][0])
-            img = pygame.transform.scale(img,((600,600)))
-            text = font.render(imglist[imgnum][0], True, (0,0,0))
-            textRect = text.get_rect()
-            textRect.center = (450,20)
-            """
             val.setText(testpercent)
             toggleval.setText(str(toggle.getValue()))
             greet = font.render("Welcome to Annot Tool GUI v1.4 !", True, (0,0,0))
@@ -496,7 +493,6 @@ try:
                     counterloc += 1
                     
             
-            
             first = 0
 
     visualizefinish = 0
@@ -528,8 +524,10 @@ try:
     boxname = []
 
     while running:
+    
         screen.fill((255, 255, 255))
         screen.blit(bg, bgRect)
+        menu()
         
         try:
             pass
@@ -554,6 +552,7 @@ try:
             
             
         except:
+            
             if visualiz == 0:
                 text = font.render("Annotation finished", True, (0,0,0))
                 annotfinish = 1
@@ -619,9 +618,7 @@ try:
                     
                     
                     button(endImg,340,700,traintestsplit)
-                    """
-                    button(visualizImg,60,700,visualize)
-                    """
+                    
         
         
         
@@ -690,7 +687,7 @@ try:
                         
                         if event.key == pygame.K_SPACE:
                             
-                            #ids[imgcounter]= []
+                            
                             
                             firstcoords[imgcounter] = []
                             secondcoords[imgcounter] = []
@@ -804,7 +801,7 @@ try:
             
         
         
-        menu()
+        
         pygame.display.flip()
         pygame.display.update()
 
@@ -821,7 +818,9 @@ except Exception as e:
     screen = pygame.display.set_mode([900, 900])
     pygame.display.set_caption('Annot tool GUI v1.4')
     def error(error):
+        
         exc_type, exc_obj, exc_tb = sys.exc_info()
+        
         link_color = (100,100,255)
         while True:
             
@@ -837,7 +836,10 @@ except Exception as e:
             
             subRect = sub.get_rect()
             subRect.center = (450,400)
+            
             cause1 = font.render(error + " at line "+str(exc_tb.tb_lineno), True, (200,0,0))
+            
+            
             cause1Rect = cause1.get_rect()
             cause1Rect.center = (450,450)
             solution = font.render("Click here to report errors", True, link_color)
