@@ -22,8 +22,15 @@ In command prompt :
 
 Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
 
-Then follow instructions here :
+Then follow instructions here : 
 
+YOLOv4:
+
+https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
+
+YOLOv4-tiny:
+
+https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
 
 # Troubleshooting
 If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
