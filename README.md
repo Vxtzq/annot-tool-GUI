@@ -13,7 +13,7 @@ In command prompt :
 ```python app.py```
 
 # Troubleshooting
-Report errors that shows on screen in the app
+If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
 
 # Dataset types
 Two dataset types are supported :
