@@ -6,6 +6,10 @@ Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
 
 # how to use
+To use with this repo :
+
+https://github.com/AlexeyAB/darknet
+
 In command prompt :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
