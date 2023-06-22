@@ -16,6 +16,8 @@ In command prompt :
 
 ```python app.py```
 
+Once annotation/marking is finished, click on "prepare data for training", and take the two files (train.txt and test.txt) generated in the result folder.
+
 # Troubleshooting
 If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
 
