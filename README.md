@@ -10,13 +10,20 @@ To use with this repo :
 
 https://github.com/AlexeyAB/darknet
 
+Follow instructions to clone it, build it.
+
+Once finished execute those commands :
+
 In command prompt :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
 
 ```python app.py```
 
-Once annotation/marking is finished, click on "prepare data for training", and take the two files (train.txt and test.txt) generated in the result folder.
+Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
+
+Then follow instructions here :
+
 
 # Troubleshooting
 If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
