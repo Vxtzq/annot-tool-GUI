@@ -1,6 +1,6 @@
 # Annot-data-GUI
 
-Simple app to annotate images for YOLOv4.
+Simple app to annotate images for YOLOv4. Made in pygame.
 
 Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
@@ -13,7 +13,7 @@ In command prompt :
 ```python app.py```
 
 # Troubleshooting
-Report errors with the app error system.
+Report errors that shows on screen in the app
 
 # Dataset types
 Two dataset types are supported :
