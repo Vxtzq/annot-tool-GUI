@@ -73,7 +73,7 @@ try:
 
     class_num = 0
     counterlocal = 0
-    print(len(names))
+    
 
     if len(names) == 1:
         for i in range(len(names)):
@@ -109,15 +109,15 @@ try:
         
         for file in glob("images/*"):
             if not "txt" in file:
-                print("test2")
+                
                 namesid[0] = [namesid[0][0],namesid[0][1]]
                 namesid[counterlocal][1] = counterlocal
                 
                 namesid[0] = (namesid[0][0],namesid[0][1])
                 imglist.append((file,0))
                 
-            print("test")
-    print(namesid)
+            
+    
 
     
     
@@ -134,15 +134,15 @@ try:
         text = textboxlist.getText()
         textboxlist.setText("")
         nametext.append(text)
-        print(nametext)
+        
     
     output = ""
     textbox = TextBox(screen, 100, 150, 700, 40, fontSize=30,
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
-                      onSubmit=output, radius=10, borderThickness=5, placeholderText="Your path here",inSubmit=lambda: print("sus"))
+                      onSubmit=output, radius=10, borderThickness=5, placeholderText="Your path here")
     textboxlist = TextBox(screen, 100, 550, 700, 40, fontSize=30,
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
-                      onSubmit=func, radius=10, borderThickness=5, placeholderText="Your path here",inSubmit=lambda: print("sus"))
+                      onSubmit=func, radius=10, borderThickness=5, placeholderText="Your path here")
     if namesid[0][0] == '@':
         toggle = Toggle(screen, 350, 450, 100, 25,startOn=False)
     else:
@@ -172,7 +172,7 @@ try:
                 element = element.replace("/*","")
                 element = element.replace("/","")
                 namesid.append((element,0))
-            #print(namesid)
+        
             class_num = 0
             for i in range(len(names)):
         
@@ -459,7 +459,7 @@ try:
             classeslistRect.center = (450,650)
             events = pygame.event.get()
             text = textbox.getText()
-            #print("nametext",nametext)
+            
             for event in events:
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -495,8 +495,8 @@ try:
                     namesid.append((element, counterloc))
                     counterloc += 1
                     
-            print("name",namesid)
-            print("text", nametext)
+            
+            
             first = 0
 
     visualizefinish = 0
@@ -703,7 +703,7 @@ try:
         
         
        
-        #print(namesid)
+        
         
             
         button(previousImg,645,10,previous)
@@ -716,7 +716,7 @@ try:
             if name[1] == currentid:
                 namelocal = name[0]
                 try:
-                    #print("current : "+str(currentid)+ " nameid : ", str(name[0]))
+                    
                     pass
                 except:
                     pass
