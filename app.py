@@ -41,6 +41,7 @@ minusImg = pygame.image.load("ressources/-.png")
 minusImg = pygame.transform.scale(minusImg,((70,70)))
 pointImg = pygame.image.load("ressources/point.png")
 pointImg = pygame.transform.scale(pointImg,((40,40)))
+
 icon = pygame.image.load('ressources/icon.png')
 
 bg = pygame.image.load("ressources/bg.jpg")
@@ -203,16 +204,12 @@ try:
 
 
     def discard():
-        global imglist, imgnum,imgcounter,nullclick,visualiz,annotfinish
+        global imgcounter,visualiz,nextclick,firstcoords,secondcoords,boxid
         if visualiz == 0:
-            if annotfinish == 0:
-                firstcoords[imgcounter] = []
-                os.remove(imglist[imgcounter][0])
-                del imglist[imgcounter]
-                
-                imgnum +=1
-                secondcoords[imgcounter] = []
-                nullclick = 1
+            firstcoords[imgcounter] = []
+            secondcoords[imgcounter] = []
+            boxid[imgcounter] = []
+        nextclick = 1
         
         
     previousclick = 0
@@ -539,7 +536,7 @@ try:
             text = font.render(imglist[imgnum][0], True, (0,0,0))
             textRect = text.get_rect()
             textRect.center = (450,20)
-            info = font.render("Space bar to clear boxes on image", True, (0,0,0))
+            info = font.render("Space bar to delete image", True, (0,0,0))
             infoRect = info.get_rect()
             infoRect.center = (450,700)
             idtext = font.render("Change next box ID", True, (0,0,0))
@@ -686,12 +683,18 @@ try:
                     if annotfinish == 0:
                         
                         if event.key == pygame.K_SPACE:
+                            if visualiz == 0:
+                                if annotfinish == 0:
+                                    firstcoords[imgcounter] = []
+                                    os.remove(imglist[imgcounter][0])
+                                    del imglist[imgcounter]
+                                    
+                                    imgnum +=1
+                                    secondcoords[imgcounter] = []
+                                    nullclick = 1
                             
                             
                             
-                            firstcoords[imgcounter] = []
-                            secondcoords[imgcounter] = []
-                            boxid[imgcounter] = []
                             
                         
          
@@ -870,3 +873,4 @@ except Exception as e:
             pygame.display.flip()
             pygame.display.update()
     error(str(e))
+
