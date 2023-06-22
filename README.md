@@ -18,12 +18,12 @@ If an Error pops up when the app is oppened, it is possible to report it by clic
 # Dataset types
 Two dataset types are supported :
 
-- Dataset with classes as folders (e. g images/dataset/class1/img.png)
+- Dataset with classes as folders (e.g. images/dataset/class1/img.png)
   
-- Dataset with just images (e. g images/img1.png
+- Dataset with just images (e.g. images/img1.png
   
 To deal with the second option, tick the corresponding option in the start settings and enter the classes names, one by one, into the last textbox.
 A preview of all the classes should be appearing under it.
 
 ## Use dataset that isn't in the "images" folder of this repo
-In the start settings, enter the path of the dataset (e. g /home/user/dataset/)
+In the start settings, enter the path of the dataset (e.g. /home/user/dataset/)
