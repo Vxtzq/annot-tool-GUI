@@ -24,3 +24,4 @@ Two dataset types are supported :
   
 To deal with the second option, tick the corresponding option in the start settings and enter the classes names, one by one, into the last textbox.
 A preview of all the classes should be appearing under it.
+## Use dataset that isn't in the "images" folder of this repo
