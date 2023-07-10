@@ -6,7 +6,7 @@ Simple app to annotate data for YOLOv4. Made in pygame.
 Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
 
-# Setup
+# Setup Darknet YOLO
 To use with this repo :
 
 https://github.com/AlexeyAB/darknet
@@ -19,13 +19,16 @@ https://github.com/AlexeyAB/darknet#how-to-compile-on-linuxmacos-using-cmake
 
 https://github.com/AlexeyAB/darknet#how-to-compile-on-windows-using-cmake
 
-After compiling, in command prompt :
+# Setup this repository
+
+In command prompt, enter :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
 
 ```pip install -r requirements.txt```
 
-# How to use
+
+# Open the app
 ## Windows
 
 #### In command prompt :
