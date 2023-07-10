@@ -11,6 +11,11 @@ from pygame_widgets.textbox import TextBox
 from pygame_widgets.slider import Slider
 from pygame_widgets.toggle import Toggle
 
+import tkinter
+from tkinter import filedialog
+
+tkinter.Tk().withdraw()
+
 pygame.init()
 font = pygame.font.Font('freesansbold.ttf', 24)
 bigfont = pygame.font.Font('freesansbold.ttf', 30)
@@ -36,6 +41,10 @@ plusImg = pygame.transform.scale(plusImg,((70,70)))
 blank2 = pygame.image.load("ressources/bg.jpg")
 blank2 = pygame.transform.scale(blank2,((1200,900)))
 blank2Rect = blank2.get_rect()
+
+browseImg = pygame.image.load("ressources/browse.png")
+browseImg = pygame.transform.scale(browseImg,((110,60)))
+
 plusImg = pygame.transform.scale(plusImg,((70,70)))
 minusImg = pygame.image.load("ressources/-.png")
 minusImg = pygame.transform.scale(minusImg,((70,70)))
@@ -137,7 +146,7 @@ try:
         
     
     output = ""
-    textbox = TextBox(screen, 100, 150, 700, 40, fontSize=30,
+    textbox = TextBox(screen, 50, 150, 700, 40, fontSize=30,
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=output, radius=10, borderThickness=5, placeholderText="Your path here")
     textboxlist = TextBox(screen, 100, 550, 700, 40, fontSize=30,
@@ -160,35 +169,33 @@ try:
     okclick = 0
 
     def okmenu():
-        global on, text,okclick,namesid,toggle
-        
+        global on, text,okclick,namesid,toggle,imglist
+        print("text : "+text)
         if text != "":
-            
+            imglist = []
+            print("doing")
+            text = text
+            print(text)
             names = fast_scandir(text)
+            print(names)
             namesid = []
             for element in names:
                 
-                element = element.replace(os.path.abspath("images/"),"")
                 
-                element = element.replace("images/","")
-                element = element.replace("/*","")
-                element = element.replace("/","")
                 namesid.append((element,0))
-                toggle.setValue(False)
-                print("sus")
-            
-            class_num = 0
-            
-            for i in range(len(names)):
-        
-        
-                class_num += 1
-                for file in glob(names[i] + "/*"):
+                print(namesid)
+                imglist.append((file,0))
+                #toggle.setValue(False)
+                #print("sus")
+            if namesid == []:
+                
+                for file in glob(text + "/*"):
                     if not "txt" in file:
-                        namesid[i] = [namesid[i][0],namesid[i][1]]
-                        namesid[i][1] = i
-                        namesid[i] = (namesid[i][0],namesid[i][1])
-                        imglist.append((file,i))
+                        namesid.append((file,0))
+                        imglist.append((file,0))
+                        
+            
+            
             
             on = False
         else:
@@ -216,6 +223,13 @@ try:
         nextclick = 1
         
         
+    def browse():
+        global text
+        
+        folder_path = filedialog.askdirectory()
+        text = folder_path
+        textbox.setText(text)    
+    
     previousclick = 0
     def previous():
         
@@ -399,7 +413,7 @@ try:
     def imgDraw(x,y):
         screen.blit(img, (x,y))
     def button(buttonimg,x,y,function):
-        global mousex,mousey,imgnum,screen
+        global mousex,mousey,imgnum,screen,okclick
         
         buttonRect = buttonimg.get_rect()
         screen.blit(buttonimg, (x,y))
@@ -410,7 +424,8 @@ try:
             
             if pygame.mouse.get_pressed()[0]:
                 
-                time.sleep(0.35)
+                okclick = 1
+                time.sleep(0.01)
                 
                 function()
 
@@ -467,7 +482,7 @@ try:
             path = font.render("Path to custom dataset (by default : images/'): ", True, (0,0,0))
             pathRect = greet.get_rect()
             pathRect.center = (300,100)
-            
+            button(browseImg,760,140,browse)
             button(pygame.transform.scale(discardImg,(60,60)),815,535,discardlist)
             pygame_widgets.update(events)
             screen.blit(path, pathRect)
@@ -557,6 +572,7 @@ try:
             if visualiz == 0:
                 text = font.render("Annotation finished", True, (0,0,0))
                 annotfinish = 1
+                info = font.render("", True, (0,0,0))
                 img = pygame.image.load("ressources/blank.png")
                 img = pygame.transform.scale(img,((600,600)))
                 firstpos = True
