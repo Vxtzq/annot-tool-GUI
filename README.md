@@ -23,7 +23,7 @@ In command prompt :
 
 Then follow instructions on the screen.
 
-Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
+Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
 Then follow instructions here : 
 
@@ -51,7 +51,7 @@ Then, simply click the .Appimage file, the app should open.
 
 Enter the right settings and start annotating
 
-Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
+Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
 Then follow instructions here : 
 
@@ -73,7 +73,7 @@ In command prompt :
 
 Then follow instructions on the screen.
 
-Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
+Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
 Then follow instructions here : 
 
