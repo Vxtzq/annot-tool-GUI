@@ -1,19 +1,24 @@
 import webbrowser
 import os
+import tkinter
+from tkinter import filedialog
 import pygame
 import time
 
 from glob import glob
-from replaceformat import *
+from PIL import Image
+
 import random
 import pygame_widgets
 from pygame_widgets.textbox import TextBox
 from pygame_widgets.slider import Slider
 from pygame_widgets.toggle import Toggle
-from PIL import Image
 
-import tkinter
-from tkinter import filedialog
+from replaceformat import *
+
+
+
+
 
 tkinter.Tk().withdraw()
 resized = 0
@@ -367,12 +372,12 @@ try:
                 nextclick = 1
             
         
-    def colorize(image, newColor):
+    def colorize(image, new_color):
         """
         Create a "colorized" copy of a surface (replaces RGB values with the given color, preserving the per-pixel alphas of
         original).
         :param image: Surface to create a colorized copy of
-        :param newColor: RGB color to use (original alpha values are preserved)
+        :param new_color: RGB color to use (original alpha values are preserved)
         :return: New colorized Surface instance
         """
         image = image.copy()
@@ -380,7 +385,7 @@ try:
         
         image.fill((0, 0, 0, 255), None, pygame.BLEND_RGBA_MULT)
         
-        image.fill(newColor[0:3] + (0,), None, pygame.BLEND_RGBA_ADD)
+        image.fill(new_color[0:3] + (0,), None, pygame.BLEND_RGBA_ADD)
 
         return image
     def visualize():
@@ -527,7 +532,7 @@ try:
             
             first = 0
 
-    visualizefinish = 0
+    VISUALIZEFINISH = 0
 
     def plus():
         global nextclick,currentid,okclick
@@ -541,8 +546,8 @@ try:
         currentid -= 1
         okclick = 1
     def finishvisualize():
-        global visualizefinish
-        visualizefinish = 1
+        global VIZUALIZEFINISH
+        VISUALIZEFINISH = 1
     def noUse():
         global nextclick
         nextclick = 1
@@ -591,9 +596,9 @@ try:
             nextboxidRect.center = (760,290)
             
             
-        except Exception as e:
+        except:
             
-            print(e)
+            
             if visualiz == 0:
                 text = font.render("Annotation finished", True, (0,0,0))
                 annotfinish = 1
@@ -612,7 +617,7 @@ try:
                 button(endImg,340,700,traintestsplit)
                 button(visualizImg,60,700,visualize)
             if visualiz == 1:
-                if visualizefinish == 0:
+                if VISUALIZEFINISH == 0:
                     text = font.render("", True, (0,0,0))
                     secondpos = False
                     fisrtpos = True
