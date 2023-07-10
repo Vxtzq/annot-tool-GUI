@@ -1,7 +1,7 @@
 
 # Annot-data-GUI
 
-Simple app to annotate images for YOLOv4. Made in pygame.
+Simple app to annotate data for YOLOv4. Made in pygame.
 
 Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
