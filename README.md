@@ -37,7 +37,7 @@ In command prompt, enter :
 
 ```bash annotdataGUI.sh```
 
-Then follow instructions on the screen.
+Enter settings (optional) and click "OK".
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
@@ -65,7 +65,7 @@ Go into the repository and go into properties of the .Appimage file and tick "Al
 
 Then, simply click the .Appimage file, the app should open.
 
-Enter the right settings and start annotating
+Enter settings (optional) and click "OK".
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
@@ -87,7 +87,7 @@ https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom
 
 ```sh annotdataGUI.sh```
 
-Then follow instructions on the screen.
+Enter settings (optional) and click "OK".
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
