@@ -34,6 +34,7 @@ https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom
 
 # Troubleshooting
 If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
+Feel free to create an issue for problems/questions.
 
 # Dataset types
 Two dataset types are supported :
