@@ -105,7 +105,7 @@ try:
                     imglist.append((file,counterlocal))
     counterlocal = 0
     if namesid == []:
-        namesid.append(("'@'",0))
+        namesid.append(("None",0))
         
                 
         
@@ -145,8 +145,9 @@ try:
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="Your path here")
     if namesid[0][0] == '@':
         toggle = Toggle(screen, 350, 450, 100, 25,startOn=False)
+    
     else:
-        toggle = Toggle(screen, 350, 450, 100, 25,startOn=False)
+        toggle = Toggle(screen, 350, 450, 100, 25,startOn=True)
 
     slider = Slider(screen, 100, 300, 700, 40, min=1, max=99, step=1, handleRadius=20,handleColour=(0,150,0))
     slider.setValue(20)
@@ -159,7 +160,7 @@ try:
     okclick = 0
 
     def okmenu():
-        global on, text,okclick,namesid
+        global on, text,okclick,namesid,toggle
         
         if text != "":
             
@@ -173,6 +174,8 @@ try:
                 element = element.replace("/*","")
                 element = element.replace("/","")
                 namesid.append((element,0))
+                toggle.setValue(False)
+                print("sus")
             
             class_num = 0
             
@@ -186,6 +189,7 @@ try:
                         namesid[i][1] = i
                         namesid[i] = (namesid[i][0],namesid[i][1])
                         imglist.append((file,i))
+            
             on = False
         else:
             on = False
@@ -746,7 +750,10 @@ try:
         if visualiz == 0:
             if annotfinish == 0:
                 if firstpos == False:
-                    pygame.draw.rect(screen, (0,0,255), pygame.Rect(firstcoord[0], firstcoord[1], mousex-firstcoord[0], mousey-firstcoord[1]),5)
+                    rect = (
+                        min(firstcoord[0], mousex), min(firstcoord[1], mousey),
+                        abs(mousex-firstcoord[0]), abs(mousey-firstcoord[1]))
+                    pygame.draw.rect(screen, (0,0,255), rect,5)
                     pygame.draw.circle(screen, (255,0,0), firstcoord, 10)
                     
                     pygame.draw.circle(screen, (255,0,0), (mousex,mousey), 10)
@@ -765,11 +772,13 @@ try:
             for firstposlist, secondposlist in zip(firstcoords[countervis],secondcoords[countervis]):
                 
                 
-            
+                rect = (
+                    min(secondposlist[0], firstposlist[0]), min(secondposlist[1], firstposlist[1]),
+                    abs(secondposlist[0]-firstposlist[0]), abs(secondposlist[1]-firstposlist[1]))
                 
                 visbox = pygame.Rect(firstposlist[0], firstposlist[1], secondposlist[0]-firstposlist[0], secondposlist[1]-firstposlist[1])
-                pygame.draw.rect(screen, (0,255,255), visbox,5)
-                pygame.draw.rect(screen, (0,0,255), visbox,5)
+                pygame.draw.rect(screen, (0,255,255), rect,5)
+                #pygame.draw.rect(screen, (0,0,255), visbox,5)
                 pygame.draw.circle(screen, (255,0,0), firstposlist, 10)
                 
                 pygame.draw.circle(screen, (255,0,0), secondposlist, 10)
@@ -780,8 +789,10 @@ try:
                 
                 box = pygame.Rect(firstposlist[0], firstposlist[1], secondposlist[0]-firstposlist[0], secondposlist[1]-firstposlist[1])
                 
-                
-                pygame.draw.rect(screen, (0,0,255), box,5)
+                rect = (
+                    min(secondposlist[0], firstposlist[0]), min(secondposlist[1], firstposlist[1]),
+                    abs(secondposlist[0]-firstposlist[0]), abs(secondposlist[1]-firstposlist[1]))
+                pygame.draw.rect(screen, (0,0,255), rect,5)
                 
                 button(pointImg,firstposlist[0]-20,firstposlist[1]-20,noUse)
                 
@@ -794,7 +805,15 @@ try:
                         
                 boxtext = font.render(namelocal, True, (0,0,255))
                 boxtextRect = boxtext.get_rect()
-                boxtextRect.center = (firstposlist[0]+40,firstposlist[1]-40)
+                if secondposlist[0] - firstposlist[0] < 0:
+                    print("negative")
+                    boxtextRect.center = (secondposlist[0]+40,secondposlist[1]-40)
+                else:
+                    
+                    
+                    boxtextRect.center = (firstposlist[0]+40,firstposlist[1]-40)
+                    print("first" + str(firstposlist[0]) +","+str(firstposlist[1]))
+                    print("second" + str(secondposlist[0]) +","+str(secondposlist[1]))
                 screen.blit(boxtext,boxtextRect)
                 counterlocal  +=1
                 
@@ -823,9 +842,9 @@ except Exception as e:
     def error(error):
         
         exc_type, exc_obj, exc_tb = sys.exc_info()
-        
+        run = True
         link_color = (100,100,255)
-        while True:
+        while run:
             
             screen.fill((255,255,255))
             screen.blit(bg, bgRect)
@@ -856,7 +875,7 @@ except Exception as e:
             for event in pygame.event.get():
 
                 if event.type == pygame.QUIT:
-                    running = False
+                    run = False
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     pos = event.pos
@@ -864,7 +883,7 @@ except Exception as e:
                     if rect.collidepoint(pos):
                         webbrowser.open(r"https://github.com/proplayer2020/annot-data-GUI/issues/new")
             if rect.collidepoint(pygame.mouse.get_pos()):
-                link_color = (70, 29, 219)
+                link_color = (70, 29, 150)
 
             else:
                 link_color = (100, 100, 255)
@@ -872,5 +891,6 @@ except Exception as e:
             
             pygame.display.flip()
             pygame.display.update()
+        pygame.quit()
     error(str(e))
-
+    
