@@ -1,3 +1,4 @@
+
 # Annot-data-GUI
 
 Simple app to annotate images for YOLOv4. Made in pygame.
@@ -12,13 +13,31 @@ https://github.com/AlexeyAB/darknet
 
 Follow instructions to clone it, build it.
 
-Once finished execute those commands :
+## For Windows
 
 In command prompt :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
 
-```python app.py```
+```./annotdataGUI.sh```
+
+## For Linux
+
+In command prompt :
+
+```git clone https://github.com/proplayer2020/annot-data-GUI```
+
+```./annotdataGUI.sh```
+
+In file manager :
+
+Go into the repository and go into properties of the .Appimage file and tick "Allow Executing File As Program"
+
+Then, simply click the .Appimage file.
+
+
+
+
 
 Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
 
