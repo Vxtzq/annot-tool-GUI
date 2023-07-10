@@ -10,19 +10,22 @@ import pygame_widgets
 from pygame_widgets.textbox import TextBox
 from pygame_widgets.slider import Slider
 from pygame_widgets.toggle import Toggle
+from PIL import Image
 
 import tkinter
 from tkinter import filedialog
 
 tkinter.Tk().withdraw()
-
+resized = 0
 pygame.init()
 font = pygame.font.Font('freesansbold.ttf', 24)
 bigfont = pygame.font.Font('freesansbold.ttf', 30)
 boxid = [[]]
 
+imgsize = 416
+
 screen = pygame.display.set_mode([900, 900])
-pygame.display.set_caption('Annot tool GUI v1.4')
+pygame.display.set_caption('Annot tool GUI v1.8')
 visualiz = 0
 previousImg = pygame.image.load("ressources/previous.png")
 previousImg = pygame.transform.scale(previousImg,((120,150)))
@@ -149,19 +152,22 @@ try:
     textbox = TextBox(screen, 50, 150, 700, 40, fontSize=30,
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=output, radius=10, borderThickness=5, placeholderText="Your path here")
-    textboxlist = TextBox(screen, 100, 550, 700, 40, fontSize=30,
+    textboxlist = TextBox(screen, 100, 650, 700, 40, fontSize=30,
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="Your path here")
+    sizebox = TextBox(screen, 100, 420, 700, 40, fontSize=30,
+                      borderColour=(0, 0, 0), textColour=(0, 200, 0),
+                      onSubmit=func, radius=10, borderThickness=5, placeholderText="size")
     if namesid[0][0] == '@':
         toggle = Toggle(screen, 350, 450, 100, 25,startOn=False)
     
     else:
-        toggle = Toggle(screen, 350, 450, 100, 25,startOn=True)
+        toggle = Toggle(screen, 350, 550, 100, 25,startOn=True)
 
     slider = Slider(screen, 100, 300, 700, 40, min=1, max=99, step=1, handleRadius=20,handleColour=(0,150,0))
     slider.setValue(20)
     val = TextBox(screen, 830, 300, 50, 50, fontSize=30)
-    toggleval = TextBox(screen, 500, 440, 80, 50, fontSize=30)
+    toggleval = TextBox(screen, 500, 540, 80, 50, fontSize=30)
     
     testpercent = 5
     on = True
@@ -169,24 +175,29 @@ try:
     okclick = 0
 
     def okmenu():
-        global on, text,okclick,namesid,toggle,imglist
-        print("text : "+text)
+        global on, text,okclick,namesid,toggle,imglist,sizebox,imgsize
+        
+        
+        if sizebox.getText() != "":
+            
+            imgsize = int(sizebox.getText())           
+        
         if text != "":
             imglist = []
-            print("doing")
+            
             text = text
-            print(text)
+            
             names = fast_scandir(text)
-            print(names)
+            
             namesid = []
             for element in names:
                 
                 
                 namesid.append((element,0))
-                print(namesid)
+                
                 imglist.append((file,0))
                 #toggle.setValue(False)
-                #print("sus")
+                
             if namesid == []:
                 
                 for file in glob(text + "/*"):
@@ -271,9 +282,10 @@ try:
         
     nextclick = 0
     def nextimg():
-        global nextclick,imgnum,imgcounter,firstpos,secondpos,box,imglist,firstcoordnew,secondcoordnew,visualiz,firstcoords,secondcoords,countervis
+        global nextclick,resized,imgnum,imgcounter,firstpos,secondpos,box,imglist,firstcoordnew,secondcoordnew,visualiz,firstcoords,secondcoords,countervis
         if visualiz == 0:
             if annotfinish == 0:
+                resized = 0
                 currentid = imglist[imgcounter][1]
                 boxname.clear()
                 if imgcounter < len(imglist):
@@ -425,7 +437,7 @@ try:
             if pygame.mouse.get_pressed()[0]:
                 
                 okclick = 1
-                time.sleep(0.01)
+                time.sleep(0.2)
                 
                 function()
 
@@ -455,21 +467,24 @@ try:
             
             val.setText(testpercent)
             toggleval.setText(str(toggle.getValue()))
-            greet = font.render("Welcome to Annot Tool GUI v1.4 !", True, (0,0,0))
+            greet = font.render("Welcome to Annot Tool GUI v1.8 !", True, (0,0,0))
             greetRect = greet.get_rect()
             greetRect.center = (450,20)
+            size = font.render("Enter model size (default : 416)", True, (0,0,0))
+            sizeRect = greet.get_rect()
+            sizeRect.center = (300,380)
             sub = font.render("Are the images into subfolders ? (e. g images/class1/img.png)", True, (0,0,0))
             subRect = sub.get_rect()
-            subRect.center = (450,400)
+            subRect.center = (450,500)
             classes = font.render("Choose classes name (one class at a time)", True, (0,0,0))
             classesRect = classes.get_rect()
-            classesRect.center = (410,520)
+            classesRect.center = (410,620)
             percent = font.render("Percentage of images in test.txt (by default : 20%)", True, (0,0,0))
             percentRect = greet.get_rect()
             percentRect.center = (300,255)
             classeslist = font.render(str(nametext), True, (0,0,255))
             classeslistRect = classeslist.get_rect()
-            classeslistRect.center = (450,650)
+            classeslistRect.center = (450,750)
             events = pygame.event.get()
             text = textbox.getText()
             
@@ -483,16 +498,17 @@ try:
             pathRect = greet.get_rect()
             pathRect.center = (300,100)
             button(browseImg,760,140,browse)
-            button(pygame.transform.scale(discardImg,(60,60)),815,535,discardlist)
+            button(pygame.transform.scale(discardImg,(60,60)),815,635,discardlist)
             pygame_widgets.update(events)
             screen.blit(path, pathRect)
+            screen.blit(size, sizeRect)
             screen.blit(classeslist, classeslistRect)
             screen.blit(classes, classesRect)
             screen.blit(sub, subRect)
             screen.blit(percent, percentRect)
             screen.blit(greet, greetRect)
             if toggle.getValue() == True:
-                blank2Rect.center = (465,950)
+                blank2Rect.center = (465,1050)
                 screen.blit(blank2,blank2Rect)
             button(okImg,700,700,okmenu)
             pygame.display.flip()
@@ -514,14 +530,16 @@ try:
     visualizefinish = 0
 
     def plus():
-        global nextclick,currentid
+        global nextclick,currentid,okclick
         nextclick = 1
         currentid += 1
+        okclick = 1
         
     def minus():
-        global nextclick,currentid
+        global nextclick,currentid,okclick
         nextclick = 1
         currentid -= 1
+        okclick = 1
     def finishvisualize():
         global visualizefinish
         visualizefinish = 1
@@ -552,6 +570,12 @@ try:
         try:
             img = pygame.image.load(imglist[imgnum][0])
             img = pygame.transform.scale(img,((600,600)))
+            if resized == 0:
+                PILimg = Image.open(imglist[imgnum][0])
+                PILimg = PILimg.resize((imgsize,imgsize))
+                
+                PILimg = PILimg.save(imglist[imgnum][0])
+                resized = 1
             text = font.render(imglist[imgnum][0], True, (0,0,0))
             textRect = text.get_rect()
             textRect.center = (450,20)
@@ -567,14 +591,16 @@ try:
             nextboxidRect.center = (760,290)
             
             
-        except:
+        except Exception as e:
             
+            print(e)
             if visualiz == 0:
                 text = font.render("Annotation finished", True, (0,0,0))
                 annotfinish = 1
                 info = font.render("", True, (0,0,0))
                 img = pygame.image.load("ressources/blank.png")
                 img = pygame.transform.scale(img,((600,600)))
+                
                 firstpos = True
                 secondpos = False
                 firstcoordnew = []
@@ -605,6 +631,7 @@ try:
                     
                     img = pygame.image.load(name[0])
                     img = pygame.transform.scale(img,((600,600)))
+                    
                 else:
                     
                     info = font.render("", True, (0,0,0))
@@ -822,14 +849,13 @@ try:
                 boxtext = font.render(namelocal, True, (0,0,255))
                 boxtextRect = boxtext.get_rect()
                 if secondposlist[0] - firstposlist[0] < 0:
-                    print("negative")
+                    
                     boxtextRect.center = (secondposlist[0]+40,secondposlist[1]-40)
                 else:
                     
                     
                     boxtextRect.center = (firstposlist[0]+40,firstposlist[1]-40)
-                    print("first" + str(firstposlist[0]) +","+str(firstposlist[1]))
-                    print("second" + str(secondposlist[0]) +","+str(secondposlist[1]))
+                    
                 screen.blit(boxtext,boxtextRect)
                 counterlocal  +=1
                 
@@ -854,7 +880,7 @@ except Exception as e:
     boxid = [[]]
 
     screen = pygame.display.set_mode([900, 900])
-    pygame.display.set_caption('Annot tool GUI v1.4')
+    pygame.display.set_caption('Annot tool GUI v1.8')
     def error(error):
         
         exc_type, exc_obj, exc_tb = sys.exc_info()
