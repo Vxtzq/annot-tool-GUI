@@ -110,9 +110,3 @@ Feel free to create an issue for problems/questions.
 ## Use dataset that isn't in the "images" folder of this repo
 In the start settings, enter the path of the dataset (e.g. /home/user/dataset/)
 
-# Compatibility
-Runs perfectly on linux
-
-May be slow on windows because of windows defender
-
-May work on Mac OS
