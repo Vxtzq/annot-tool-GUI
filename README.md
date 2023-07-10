@@ -32,11 +32,6 @@ YOLOv4-tiny:
 
 https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
 
-# Troubleshooting
-If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
-
-Feel free to create an issue for problems/questions.
-
 # Dataset types
 Two dataset types are supported :
 
@@ -47,6 +42,11 @@ Two dataset types are supported :
 To deal with the second option, tick the corresponding option in the start settings and enter the classes names, one by one, into the last textbox.
 
 A preview of all the classes should be appearing under it.
+
+# Troubleshooting
+If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
+
+Feel free to create an issue for problems/questions.
 
 ## Use dataset that isn't in the "images" folder of this repo
 In the start settings, enter the path of the dataset (e.g. /home/user/dataset/)
