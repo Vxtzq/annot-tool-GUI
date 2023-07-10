@@ -11,7 +11,15 @@ To use with this repo :
 
 https://github.com/AlexeyAB/darknet
 
-Follow instructions to clone it, build it.
+Clone it, than compile it :
+
+#### Linux and Mac OS:
+
+https://github.com/AlexeyAB/darknet#how-to-compile-on-linuxmacos-using-cmake
+
+#### Windows :
+
+https://github.com/AlexeyAB/darknet#how-to-compile-on-windows-using-cmake
 
 Then, in command prompt :
 
