@@ -5,7 +5,7 @@ Simple app to annotate images for YOLOv4. Made in pygame.
 Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
 
-# how to use
+# How to use
 To use with this repo :
 
 https://github.com/AlexeyAB/darknet
