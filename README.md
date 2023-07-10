@@ -13,7 +13,7 @@ https://github.com/AlexeyAB/darknet
 
 Follow instructions to clone it, build it.
 
-## For Windows
+## Windows
 
 In command prompt :
 
@@ -21,7 +21,7 @@ In command prompt :
 
 ```./annotdataGUI.sh```
 
-## For Linux
+## Linux
 
 In command prompt :
 
