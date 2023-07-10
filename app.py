@@ -608,7 +608,9 @@ try:
                 info = font.render("", True, (0,0,0))
                 img = pygame.image.load("ressources/blank.png")
                 img = pygame.transform.scale(img,((600,600)))
-                
+                num = font.render("", True, (0,0,0))
+                numRect = num.get_rect()
+                numRect.center = (100,850)
                 firstpos = True
                 secondpos = False
                 firstcoordnew = []
@@ -625,6 +627,9 @@ try:
                     secondpos = False
                     fisrtpos = True
                     firstcoordnew = []
+                    num = font.render("", True, (0,0,0))
+                    numRect = num.get_rect()
+                    numRect.center = (100,850)
                     secondcoordnew = []
                     firstcoord = []
                     secondcoord = []
