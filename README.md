@@ -35,6 +35,14 @@ Go into the repository and go into properties of the .Appimage file and tick "Al
 
 Then, simply click the .Appimage file.
 
+## Mac OS
+
+In command prompt :
+
+```chmod +x annotdataGUI.sh```
+
+```sh annotdataGUI.sh```
+
 
 
 
