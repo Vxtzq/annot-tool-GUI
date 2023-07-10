@@ -113,6 +113,7 @@ If an Error pops up when the app is oppened, it is possible to report it by clic
 
 Feel free to create an issue for problems/questions.
 
-## Use dataset that isn't in the "images" folder of this repo
-In the start settings, enter the path of the dataset (e.g. /home/user/dataset/)
+## Use a dataset that isn't in the folder named "images" of this repo
+If the used dataset is somewhere else than in annot-data-GUI/images/*, it is possible to change its location
+in the start settings, by entering the path of the dataset (e.g. /home/user/dataset/)
 
