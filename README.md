@@ -15,7 +15,7 @@ Follow instructions to clone it, build it.
 
 ## Windows
 
-### In command prompt :
+#### In command prompt :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
 
@@ -37,13 +37,13 @@ https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom
 
 ## Linux
 
-### In command prompt :
+#### In command prompt :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
 
 ```./annotdataGUI.sh```
 
-### In file manager :
+#### In file manager :
 
 Go into the repository and go into properties of the .Appimage file and tick "Allow Executing File As Program"
 
@@ -65,7 +65,7 @@ https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom
 
 ## Mac OS
 
-### In command prompt :
+#### In command prompt :
 
 ```chmod +x annotdataGUI.sh```
 
