@@ -11,17 +11,15 @@ To use with this repo :
 
 https://github.com/AlexeyAB/darknet
 
-Clone it, than compile it :
+Clone it, then compile it following instructions.
 
-#### Linux and Mac OS:
+Useful links :
 
 https://github.com/AlexeyAB/darknet#how-to-compile-on-linuxmacos-using-cmake
 
-#### Windows :
-
 https://github.com/AlexeyAB/darknet#how-to-compile-on-windows-using-cmake
 
-Then, in command prompt :
+After compiling, in command prompt :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
 
