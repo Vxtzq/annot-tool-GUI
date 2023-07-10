@@ -17,7 +17,7 @@ Then, in command prompt :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
 
-```pip install requirements.txt```
+```pip install -r requirements.txt```
 
 ## Windows
 
