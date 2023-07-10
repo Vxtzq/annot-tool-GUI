@@ -21,31 +21,7 @@ In command prompt :
 
 ```bash annotdataGUI.sh```
 
-## Linux
-
-In command prompt :
-
-```git clone https://github.com/proplayer2020/annot-data-GUI```
-
-```./annotdataGUI.sh```
-
-In file manager :
-
-Go into the repository and go into properties of the .Appimage file and tick "Allow Executing File As Program"
-
-Then, simply click the .Appimage file.
-
-## Mac OS
-
-In command prompt :
-
-```chmod +x annotdataGUI.sh```
-
-```sh annotdataGUI.sh```
-
-
-
-
+Then follow instructions on the screen.
 
 Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
 
@@ -58,6 +34,62 @@ https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
 YOLOv4-tiny:
 
 https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
+
+## Linux
+
+In command prompt :
+
+```git clone https://github.com/proplayer2020/annot-data-GUI```
+
+```./annotdataGUI.sh```
+
+In file manager :
+
+Go into the repository and go into properties of the .Appimage file and tick "Allow Executing File As Program"
+
+Then, simply click the .Appimage file, the app should open.
+
+Enter the right settings and start annotating
+
+Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
+
+Then follow instructions here : 
+
+YOLOv4:
+
+https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
+
+YOLOv4-tiny:
+
+https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
+
+## Mac OS
+
+In command prompt :
+
+```chmod +x annotdataGUI.sh```
+
+```sh annotdataGUI.sh```
+
+Then follow instructions on the screen.
+
+Once annotation/marking is finished, click on "prepare data for training", and put the two files (train.txt and test.txt) generated in the result folder into build/darknet/data
+
+Then follow instructions here : 
+
+YOLOv4:
+
+https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
+
+YOLOv4-tiny:
+
+https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
+
+
+
+
+
+
 
 # Dataset types
 Two dataset types are supported :
