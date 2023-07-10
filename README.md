@@ -6,7 +6,7 @@ Simple app to annotate data for YOLOv4. Made in pygame.
 Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
 
-# How to use
+# Setup
 To use with this repo :
 
 https://github.com/AlexeyAB/darknet
@@ -25,6 +25,7 @@ After compiling, in command prompt :
 
 ```pip install -r requirements.txt```
 
+# How to use
 ## Windows
 
 #### In command prompt :
