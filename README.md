@@ -13,11 +13,17 @@ https://github.com/AlexeyAB/darknet
 
 Follow instructions to clone it, build it.
 
+Then, in command prompt :
+
+```git clone https://github.com/proplayer2020/annot-data-GUI```
+
+```pip install requirements.txt```
+
 ## Windows
 
 #### In command prompt :
 
-```git clone https://github.com/proplayer2020/annot-data-GUI```
+```chmod +x annotdataGUI.sh```
 
 ```bash annotdataGUI.sh```
 
@@ -39,7 +45,7 @@ https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom
 
 #### In command prompt :
 
-```git clone https://github.com/proplayer2020/annot-data-GUI```
+```chmod +x annotdataGUI.sh```
 
 ```./annotdataGUI.sh```
 
