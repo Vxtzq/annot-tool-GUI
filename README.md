@@ -19,7 +19,7 @@ In command prompt :
 
 ```git clone https://github.com/proplayer2020/annot-data-GUI```
 
-```./annotdataGUI.sh```
+```bash annotdataGUI.sh```
 
 ## Linux
 
