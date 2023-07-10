@@ -587,6 +587,9 @@ try:
             info = font.render("Space bar to delete image", True, (0,0,0))
             infoRect = info.get_rect()
             infoRect.center = (450,700)
+            num = font.render("Image "+str(imgcounter+1)+" of "+str(len(imglist)), True, (0,0,0))
+            numRect = num.get_rect()
+            numRect.center = (100,850)
             idtext = font.render("Change next box ID", True, (0,0,0))
             idtextRect = idtext.get_rect()
             idtextRect.center = (770,200)
@@ -784,6 +787,7 @@ try:
         
         imgDraw(40,40)
         screen.blit(text, textRect)
+        screen.blit(num, numRect)
         screen.blit(info,infoRect)
         screen.blit(nextboxid,nextboxidRect)
         screen.blit(idtext, idtextRect)
