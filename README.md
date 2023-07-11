@@ -62,7 +62,7 @@ Then, simply click the .Appimage file, the app should open.
 
 ```sh annotdataGUI.sh```
 
-## Once the app is opened :
+## Once the app is opened :
 
 
 
