@@ -4,6 +4,8 @@ import tkinter
 from tkinter import filedialog
 import pygame
 import time
+import gc
+import sys
 
 from glob import glob
 from PIL import Image
@@ -15,12 +17,12 @@ from pygame_widgets.slider import Slider
 from pygame_widgets.toggle import Toggle
 
 from replaceformat import *
-
-
-
-
-
 tkinter.Tk().withdraw()
+
+gc.enable()
+
+
+
 resized = 0
 pygame.init()
 font = pygame.font.Font('freesansbold.ttf', 24)
@@ -66,10 +68,9 @@ bg = pygame.transform.scale(bg,((1200,900)))
 bgRect = bg.get_rect()
 pygame.display.set_icon(icon)
 
-
 try:
     ids = [[]]
-    
+
     imglist = []
     def fast_scandir(dirname):
         subfolders= [f.path for f in os.scandir(dirname) if f.is_dir()]
@@ -77,6 +78,7 @@ try:
             subfolders.extend(fast_scandir(dirnames))
         return subfolders
     names = fast_scandir("images/")
+
 
     namesid = []
     for element in names:
@@ -90,11 +92,13 @@ try:
 
 
 
+
     class_num = 0
     counterlocal = 0
-    
 
-    if len(names) == 1:
+
+    if names == []:
+        
         for i in range(len(names)):
             
             
@@ -109,9 +113,10 @@ try:
                     imglist.append((file,counterlocal))
             counterlocal += 1
     else:
+        counterlocal = 0
         for i in range(len(names)):
             
-            counterlocal += 1
+            
             class_num += 1
             for file in glob(names[i] + "/*"):
                 if not "txt" in file:
@@ -120,24 +125,13 @@ try:
                     
                     namesid[counterlocal] = (namesid[counterlocal][0],namesid[counterlocal][1])
                     imglist.append((file,counterlocal))
+            counterlocal += 1
     counterlocal = 0
-    if namesid == []:
-        namesid.append(("None",0))
-        
+
                 
-        
-        for file in glob("images/*"):
-            if not "txt" in file:
-                
-                namesid[0] = [namesid[0][0],namesid[0][1]]
-                namesid[counterlocal][1] = counterlocal
-                
-                namesid[0] = (namesid[0][0],namesid[0][1])
-                imglist.append((file,0))
-                
-    
-    
-    
+
+
+
     mousex = 0
     mousey = 0
     imgnum = 0
@@ -152,7 +146,7 @@ try:
         textboxlist.setText("")
         nametext.append(text)
         
-    
+
     output = ""
     textbox = TextBox(screen, 50, 150, 700, 40, fontSize=30,
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
@@ -165,7 +159,7 @@ try:
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="size")
     if namesid[0][0] == '@':
         toggle = Toggle(screen, 350, 450, 100, 25,startOn=False)
-    
+
     else:
         toggle = Toggle(screen, 350, 550, 100, 25,startOn=True)
 
@@ -173,7 +167,7 @@ try:
     slider.setValue(20)
     val = TextBox(screen, 830, 300, 50, 50, fontSize=30)
     toggleval = TextBox(screen, 500, 540, 80, 50, fontSize=30)
-    
+
     testpercent = 5
     on = True
     text = ""
@@ -195,20 +189,40 @@ try:
             names = fast_scandir(text)
             
             namesid = []
+            
             for element in names:
                 
                 
                 namesid.append((element,0))
                 
-                imglist.append((file,0))
-                #toggle.setValue(False)
                 
-            if namesid == []:
+            
+            if names == []:
                 
                 for file in glob(text + "/*"):
-                    if not "txt" in file:
+                    if not ".txt" in file:
                         namesid.append((file,0))
                         imglist.append((file,0))
+            else:
+                class_num = 0
+                counterlocal = 0
+                for i in range(len(names)):
+                    
+                    
+                    class_num += 1
+                    
+                    for files in glob(names[i] + "/*"):
+                        if not "txt" in files:
+                            
+                            namesid[counterlocal] = [namesid[counterlocal][0].split('/')[-1],namesid[counterlocal][1]]
+                            namesid[counterlocal][1] = counterlocal
+                            
+                            namesid[counterlocal] = (namesid[counterlocal][0],namesid[counterlocal][1])
+                            imglist.append((files,counterlocal))
+                    
+                        
+                    
+                    counterlocal += 1
                         
             
             
@@ -243,9 +257,13 @@ try:
         global text
         
         folder_path = filedialog.askdirectory()
-        text = folder_path
-        textbox.setText(text)    
-    
+        if "()" in str(folder_path):
+            pass
+        else:
+            
+            text = folder_path
+            textbox.setText(text)    
+
     previousclick = 0
     def previous():
         
@@ -282,7 +300,7 @@ try:
         if on == False:
              
              currentid = imglist[0][1]
-    
+
 
         
     nextclick = 0
@@ -300,30 +318,30 @@ try:
                     boxid.append([])
                     ids.append([])
                     if visualiz == 0:
-                        file = replacetxt(imglist[imgnum][0])
+                        filetxt = replacetxt(imglist[imgnum][0])
                         if box == None:
-                            file = open(file,"a")
-                            file.close()
+                            filetxt = open(filetxt,"a")
+                            filetxt.close()
                             
-                            file = replacetxt(imglist[imgnum][0])
-                            file = open(file, 'r+')
-                            file.truncate(0) 
-                            file.close()
-                            file = replacetxt(imglist[imgnum][0])
-                            file = open(file,"a")
-                            file.close()
+                            filetxt = replacetxt(imglist[imgnum][0])
+                            filetxt = open(filetxt, 'r+')
+                            filetxt.truncate(0) 
+                            filetxt.close()
+                            filetxt = replacetxt(imglist[imgnum][0])
+                            filetxt = open(filetxt,"a")
+                            filetxt.close()
                             
                         else:
-                            file = open(file,"a")
-                            file.close()
-                            file = replacetxt(imglist[imgnum][0])
+                            filetxt = open(filetxt,"a")
+                            filetxt.close()
+                            filetxt = replacetxt(imglist[imgnum][0])
                             
-                            file = open(file, 'r+')
-                            file.truncate(0)
-                            file.close()
+                            filetxt = open(filetxt, 'r+')
+                            filetxt.truncate(0)
+                            filetxt.close()
                             
-                            file = replacetxt(imglist[imgnum][0])
-                            file = open(file,"a")
+                            filetxt = replacetxt(imglist[imgnum][0])
+                            filetxt = open(filetxt,"a")
                             
                             
                             counter = 0
@@ -348,9 +366,9 @@ try:
                                 height = abs(height)
                                 ID = imglist[imgnum][1]
                                 text = str(ids[imgnum][counter])+ " "+str(centerx)+" "+str(centery)+" "+str(width)+" "+str(height)+"\n"
-                                file.write(text)
+                                filetxt.write(text)
                                 counter += 1
-                            file.close()
+                            filetxt.close()
                                 
                         firstpos = True
                         secondpos = False
@@ -563,7 +581,7 @@ try:
     boxname = []
 
     while running:
-    
+
         screen.fill((255, 255, 255))
         screen.blit(bg, bgRect)
         menu()
@@ -576,6 +594,7 @@ try:
             img = pygame.image.load(imglist[imgnum][0])
             img = pygame.transform.scale(img,((600,600)))
             if resized == 0:
+                
                 PILimg = Image.open(imglist[imgnum][0])
                 PILimg = PILimg.resize((imgsize,imgsize))
                 
@@ -600,6 +619,7 @@ try:
             
             
         except:
+            
             
             
             if visualiz == 0:
@@ -835,7 +855,7 @@ try:
                 
                 visbox = pygame.Rect(firstposlist[0], firstposlist[1], secondposlist[0]-firstposlist[0], secondposlist[1]-firstposlist[1])
                 pygame.draw.rect(screen, (0,255,255), rect,5)
-                #pygame.draw.rect(screen, (0,0,255), visbox,5)
+                
                 pygame.draw.circle(screen, (255,0,0), firstposlist, 10)
                 
                 pygame.draw.circle(screen, (255,0,0), secondposlist, 10)
@@ -851,11 +871,11 @@ try:
                     abs(secondposlist[0]-firstposlist[0]), abs(secondposlist[1]-firstposlist[1]))
                 pygame.draw.rect(screen, (0,0,255), rect,5)
                 
-                button(pointImg,firstposlist[0]-20,firstposlist[1]-20,noUse)
+                #button(pointImg,firstposlist[0]-20,firstposlist[1]-20,noUse)
                 
                 
                 
-                button(pointImg,secondposlist[0]-20,secondposlist[1]-20,noUse)
+                #button(pointImg,secondposlist[0]-20,secondposlist[1]-20,noUse)
                 for name in namesid:
                     if name[1] == boxid[imgcounter][counterlocal]:
                         namelocal = name[0]
@@ -887,7 +907,7 @@ try:
 
     pygame.quit()
 except Exception as e:
-    import sys
+    
     pygame.init()
     font = pygame.font.Font('freesansbold.ttf', 24)
     bigfont = pygame.font.Font('freesansbold.ttf', 30)
@@ -949,4 +969,6 @@ except Exception as e:
             pygame.display.update()
         pygame.quit()
     error(str(e))
-    
+
+
+
