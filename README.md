@@ -27,7 +27,7 @@ In command prompt, enter :
 ```pip install -r requirements.txt```
 
 
-# Open the app
+# How to use
 ## Windows
 
 #### In command prompt :
