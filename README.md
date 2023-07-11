@@ -33,23 +33,22 @@ In command prompt, enter :
 ## Open the app
 ### Windows
 
-#### In command prompt :
+In command prompt :
 
 ```annotdataGUI.bat```
 
-#### In file manager :
+In file manager :
 
 Simply click on "annotdataGUI.bat"
 
 ### Linux
 
-#### In command prompt :
+In command prompt :
 
 ```chmod +x annotdataGUI.sh```
 
 ```./annotdataGUI.sh```
-
-#### In file manager :
+In file manager :
 
 Go into the repository and go into the properties of "annotdataGUI.Appimage" file and tick "Allow Executing File As Program"
 
@@ -57,7 +56,7 @@ Then, simply click the .Appimage file, the app should open.
 
 ### Mac OS
 
-#### In command prompt :
+In command prompt :
 
 ```chmod +x annotdataGUI.sh```
 
