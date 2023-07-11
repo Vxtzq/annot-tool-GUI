@@ -5,8 +5,6 @@ Simple app to annotate data for YOLOv4. Made in pygame.
 
 Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
-#### It is better to read this until the end
-
 # Setup Darknet YOLO
 
 This repository works with "darknet" YOLO, here is the link :
