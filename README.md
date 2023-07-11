@@ -65,6 +65,8 @@ Once the app is opened, enter settings (optional) and click "OK".
 
 Useful buttons : 
 
+![demo](https://github.com/proplayer2020/annot-tool-GUI/assets/116555319/50830e5a-5c0a-4432-822d-c63eb2a2ac8e)
+
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
