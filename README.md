@@ -34,9 +34,11 @@ In command prompt, enter :
 
 #### In command prompt :
 
-```chmod +x annotdataGUI.sh```
+```annotdataGUI.bat```
 
-```bash annotdataGUI.sh```
+#### In file manager :
+
+Simply click on "annotdataGUI.bat"
 
 Enter settings (optional) and click "OK".
 
