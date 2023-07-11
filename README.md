@@ -40,22 +40,6 @@ In command prompt, enter :
 
 Simply click on "annotdataGUI.bat"
 
-#### Then :
-
-Enter settings (optional) and click "OK".
-
-Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
-
-Then follow instructions here : 
-
-YOLOv4:
-
-https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
-
-YOLOv4-tiny:
-
-https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
-
 ## Linux
 
 #### In command prompt :
@@ -70,22 +54,6 @@ Go into the repository and go into properties of the .Appimage file and tick "Al
 
 Then, simply click the .Appimage file, the app should open.
 
-#### Then :
-
-Enter settings (optional) and click "OK".
-
-Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
-
-Then follow instructions here : 
-
-YOLOv4:
-
-https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
-
-YOLOv4-tiny:
-
-https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
-
 ## Mac OS
 
 #### In command prompt :
@@ -94,6 +62,10 @@ https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom
 
 ```sh annotdataGUI.sh```
 
+## Once the app is opened :
+
+
+
 Enter settings (optional) and click "OK".
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
@@ -107,12 +79,6 @@ https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
 YOLOv4-tiny:
 
 https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
-
-
-
-
-
-
 
 # Dataset types
 ## Dataset structures
