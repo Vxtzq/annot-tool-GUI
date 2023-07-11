@@ -61,8 +61,6 @@ In command prompt :
 
 # How to use :
 
-Once the app is opened, enter settings (optional) and click "OK".
-
 Useful buttons : 
 
 ![demo](https://github.com/proplayer2020/annot-tool-GUI/assets/116555319/851947ff-0e9d-4caf-a255-a869a6ee4c90)
