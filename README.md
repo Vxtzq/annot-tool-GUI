@@ -50,7 +50,7 @@ Simply click on "annotdataGUI.bat"
 
 #### In file manager :
 
-Go into the repository and go into properties of the .Appimage file and tick "Allow Executing File As Program"
+Go into the repository and go into the properties of "annotdataGUI.Appimage" file and tick "Allow Executing File As Program"
 
 Then, simply click the .Appimage file, the app should open.
 
@@ -63,9 +63,6 @@ Then, simply click the .Appimage file, the app should open.
 ```sh annotdataGUI.sh```
 
 ## Once the app is opened :
-
-
-
 Enter settings (optional) and click "OK".
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
