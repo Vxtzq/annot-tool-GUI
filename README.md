@@ -40,6 +40,8 @@ In command prompt, enter :
 
 Simply click on "annotdataGUI.bat"
 
+#### Then :
+
 Enter settings (optional) and click "OK".
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
@@ -67,6 +69,8 @@ https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom
 Go into the repository and go into properties of the .Appimage file and tick "Allow Executing File As Program"
 
 Then, simply click the .Appimage file, the app should open.
+
+#### Then :
 
 Enter settings (optional) and click "OK".
 
