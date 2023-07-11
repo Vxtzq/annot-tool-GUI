@@ -61,6 +61,8 @@ minusImg = pygame.transform.scale(minusImg,((70,70)))
 pointImg = pygame.image.load("ressources/point.png")
 pointImg = pygame.transform.scale(pointImg,((40,40)))
 
+specific = None
+
 icon = pygame.image.load('ressources/icon.png')
 
 bg = pygame.image.load("ressources/bg.jpg")
@@ -618,10 +620,8 @@ try:
             nextboxidRect.center = (760,290)
             
             
-        except:
-            
-            
-            
+        except Exception as e:            
+            specific = e
             if visualiz == 0:
                 text = font.render("Annotation finished", True, (0,0,0))
                 annotfinish = 1
@@ -915,7 +915,7 @@ except Exception as e:
 
     screen = pygame.display.set_mode([900, 900])
     pygame.display.set_caption('Annot tool GUI v1.8')
-    def error(error):
+    def error(error, specific):
         
         exc_type, exc_obj, exc_tb = sys.exc_info()
         run = True
@@ -934,9 +934,10 @@ except Exception as e:
             
             subRect = sub.get_rect()
             subRect.center = (450,400)
-            
-            cause1 = font.render(error + " at line "+str(exc_tb.tb_lineno), True, (200,0,0))
-            
+            if specific == None:
+                cause1 = font.render(error + " at line "+str(exc_tb.tb_lineno), True, (200,0,0))
+            else:
+                cause1 = font.render(str(specific) + " at line "+str(exc_tb.tb_lineno), True, (200,0,0))
             
             cause1Rect = cause1.get_rect()
             cause1Rect.center = (450,450)
@@ -968,7 +969,7 @@ except Exception as e:
             pygame.display.flip()
             pygame.display.update()
         pygame.quit()
-    error(str(e))
+    error(str(e),specific)
 
 
 
