@@ -5,7 +5,7 @@ Simple app to annotate data for YOLOv4. Made in pygame.
 Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
 # How to install
-## Setup "darknet" repository
+
 This repository works with "darknet" YOLO, here is the link :
 
 https://github.com/AlexeyAB/darknet
@@ -18,9 +18,7 @@ https://github.com/AlexeyAB/darknet#how-to-compile-on-linuxmacos-using-cmake
 
 https://github.com/AlexeyAB/darknet#how-to-compile-on-windows-using-cmake
 
-## Setup this repository
-
-In command prompt, enter :
+Then, in command prompt, enter :
 
 ```git clone https://github.com/proplayer2020/annot-tool-GUI```
 
@@ -29,9 +27,8 @@ In command prompt, enter :
 ```pip install -r requirements.txt```
 
 
-# How to use
-## Open the app
-### Windows
+# How to make it work
+## Windows
 
 In command prompt :
 
@@ -41,7 +38,7 @@ In file manager :
 
 Simply click on "annotdataGUI.bat"
 
-### Linux
+## Linux
 
 In command prompt :
 
@@ -54,7 +51,7 @@ Go into the repository and go into the properties of "annotdataGUI.Appimage" fil
 
 Then, simply click the .Appimage file, the app should open.
 
-### Mac OS
+## Mac OS
 
 In command prompt :
 
@@ -62,8 +59,12 @@ In command prompt :
 
 ```sh annotdataGUI.sh```
 
-## Once the app is opened :
-Enter settings (optional) and click "OK".
+# How to use :
+
+Once the app is opened, enter settings (optional) and click "OK".
+
+Useful buttons : 
+
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
