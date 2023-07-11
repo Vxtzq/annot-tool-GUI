@@ -30,7 +30,8 @@ In command prompt, enter :
 
 
 # How to use
-## Windows
+## Open the app
+### Windows
 
 #### In command prompt :
 
@@ -40,7 +41,7 @@ In command prompt, enter :
 
 Simply click on "annotdataGUI.bat"
 
-## Linux
+### Linux
 
 #### In command prompt :
 
@@ -54,7 +55,7 @@ Go into the repository and go into the properties of "annotdataGUI.Appimage" fil
 
 Then, simply click the .Appimage file, the app should open.
 
-## Mac OS
+### Mac OS
 
 #### In command prompt :
 
