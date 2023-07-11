@@ -22,7 +22,9 @@ https://github.com/AlexeyAB/darknet#how-to-compile-on-windows-using-cmake
 
 In command prompt, enter :
 
-```git clone https://github.com/proplayer2020/annot-data-GUI```
+```git clone https://github.com/proplayer2020/annot-tool-GUI```
+
+```cd annot-tool-GUI```
 
 ```pip install -r requirements.txt```
 
