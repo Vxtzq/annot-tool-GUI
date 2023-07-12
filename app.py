@@ -11,7 +11,7 @@ from screeninfo import get_monitors
 
 for m in get_monitors():
     
-    HEIGHT = m.height
+    HEIGHT = m.height-50
     
 
 from glob import glob
