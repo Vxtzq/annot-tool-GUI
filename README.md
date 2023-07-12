@@ -64,7 +64,7 @@ In command prompt :
 
 Useful buttons : 
 
-![demo](https://github.com/proplayer2020/annot-tool-GUI/assets/116555319/851947ff-0e9d-4caf-a255-a869a6ee4c90)
+![demo](https://github.com/proplayer2020/annot-tool-GUI/assets/116555319/fd7f641b-554e-48d3-955d-41a36d41dbac)
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
