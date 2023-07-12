@@ -7,6 +7,13 @@ import time
 import gc
 import sys
 
+from screeninfo import get_monitors
+
+for m in get_monitors():
+    
+    HEIGHT = m.height
+    
+
 from glob import glob
 from PIL import Image
 
@@ -25,48 +32,54 @@ gc.enable()
 
 resized = 0
 pygame.init()
-font = pygame.font.Font('freesansbold.ttf', 24)
-bigfont = pygame.font.Font('freesansbold.ttf', 30)
+
 boxid = [[]]
 
 imgsize = 416
 
-screen = pygame.display.set_mode([900, 900])
+coef = HEIGHT/900
+
+
+font = pygame.font.Font('freesansbold.ttf', int(coef*24))
+bigfont = pygame.font.Font('freesansbold.ttf', int(coef*30))
+
+
+screen = pygame.display.set_mode([int(coef*900), int(coef*900)])
 pygame.display.set_caption('Annot tool GUI v1.8')
 visualiz = 0
 previousImg = pygame.image.load("ressources/previous.png")
-previousImg = pygame.transform.scale(previousImg,((120,150)))
+previousImg = pygame.transform.scale(previousImg,((int(120*coef),int(150*coef))))
 nextImg = pygame.image.load("ressources/next.png")
-nextImg = pygame.transform.scale(nextImg,((120,150)))
+nextImg = pygame.transform.scale(nextImg,((int(120*coef),int(150*coef))))
 discardImg = pygame.image.load("ressources/discard.png")
-discardImg = pygame.transform.scale(discardImg,((155,150)))
+discardImg = pygame.transform.scale(discardImg,((int(155*coef),int(150*coef))))
 endImg = pygame.image.load("ressources/end.png")
-endImg = pygame.transform.scale(endImg,((150,150)))
+endImg = pygame.transform.scale(endImg,((int(150*coef),int(150*coef))))
 visualizImg = pygame.image.load("ressources/visualize.png")
-visualizImg = pygame.transform.scale(visualizImg,((150,150)))
+visualizImg = pygame.transform.scale(visualizImg,((int(150*coef),int(150*coef))))
 okImg = pygame.image.load("ressources/ok.png")
-okImg = pygame.transform.scale(okImg,((150,150)))
+okImg = pygame.transform.scale(okImg,((int(150*coef),int(150*coef))))
 plusImg = pygame.image.load("ressources/+.png")
-plusImg = pygame.transform.scale(plusImg,((70,70)))
+plusImg = pygame.transform.scale(plusImg,((int(70*coef),int(70*coef))))
 blank2 = pygame.image.load("ressources/bg.jpg")
-blank2 = pygame.transform.scale(blank2,((1200,900)))
+blank2 = pygame.transform.scale(blank2,((int(1200*coef),int(900*coef))))
 blank2Rect = blank2.get_rect()
 
 browseImg = pygame.image.load("ressources/browse.png")
-browseImg = pygame.transform.scale(browseImg,((110,60)))
+browseImg = pygame.transform.scale(browseImg,((int(110*coef),int(60*coef))))
 
-plusImg = pygame.transform.scale(plusImg,((70,70)))
+plusImg = pygame.transform.scale(plusImg,((int(70*coef),int(70*coef))))
 minusImg = pygame.image.load("ressources/-.png")
-minusImg = pygame.transform.scale(minusImg,((70,70)))
+minusImg = pygame.transform.scale(minusImg,((int(70*coef),int(70*coef))))
 pointImg = pygame.image.load("ressources/point.png")
-pointImg = pygame.transform.scale(pointImg,((40,40)))
+pointImg = pygame.transform.scale(pointImg,((int(40*coef),int(40*coef))))
 
 specific = None
 
 icon = pygame.image.load('ressources/icon.png')
 
 bg = pygame.image.load("ressources/bg.jpg")
-bg = pygame.transform.scale(bg,((1200,900)))
+bg = pygame.transform.scale(bg,((int(1200*coef),int(900*coef))))
 bgRect = bg.get_rect()
 pygame.display.set_icon(icon)
 
@@ -150,25 +163,25 @@ try:
         
 
     output = ""
-    textbox = TextBox(screen, 50, 150, 700, 40, fontSize=30,
+    textbox = TextBox(screen, int(50*coef), int(150*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=output, radius=10, borderThickness=5, placeholderText="Your path here")
-    textboxlist = TextBox(screen, 100, 650, 700, 40, fontSize=30,
+    textboxlist = TextBox(screen, int(100*coef), int(650*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="Your path here")
-    sizebox = TextBox(screen, 100, 420, 700, 40, fontSize=30,
+    sizebox = TextBox(screen, int(100*coef), int(420*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="size")
     if namesid[0][0] == '@':
-        toggle = Toggle(screen, 350, 450, 100, 25,startOn=False)
+        toggle = Toggle(screen, int(350*coef), int(450*coef), int(100*coef), int(25*coef),startOn=False)
 
     else:
-        toggle = Toggle(screen, 350, 550, 100, 25,startOn=True)
+        toggle = Toggle(screen, int(350*coef), int(550*coef), int(100*coef), int(25*coef),startOn=True)
 
-    slider = Slider(screen, 100, 300, 700, 40, min=1, max=99, step=1, handleRadius=20,handleColour=(0,150,0))
+    slider = Slider(screen, int(100*coef), int(300*coef), int(700*coef), int(40*coef), min=1, max=99, step=1, handleRadius=20,handleColour=(0,150,0))
     slider.setValue(20)
-    val = TextBox(screen, 830, 300, 50, 50, fontSize=30)
-    toggleval = TextBox(screen, 500, 540, 80, 50, fontSize=30)
+    val = TextBox(screen, int(830*coef), int(300*coef), int(50*coef), int(50*coef), fontSize=int(coef*30))
+    toggleval = TextBox(screen, int(500*coef), int(540*coef), int(80*coef), int(50*coef), fontSize=int(coef*30))
 
     testpercent = 5
     on = True
@@ -351,13 +364,13 @@ try:
                                 
                                 centerx = (firstposlist[0]+secondposlist[0])/2-40
                                 centery = (firstposlist[1]+secondposlist[1])/2-40
-                                centerx = centerx /600
-                                centery = centery / 600
+                                centerx = centerx /600*coef
+                                centery = centery / 600*coef
                                 
                                 width = secondposlist[0]-firstposlist[0]
                                 height=secondposlist[1]-firstposlist[1]
-                                width = round(width,5)/600
-                                height = round(height,5)/600
+                                width = round(width,5)/600*coef
+                                height = round(height,5)/600*coef
                                 
                                 centerx = round(centerx,5)
                                 centery = round(centery,5)
@@ -414,7 +427,7 @@ try:
         
         try:
             img = pygame.image.load(imglist[countervis][0])
-            img = pygame.transform.scale(img,((600,600)))
+            img = pygame.transform.scale(img,((int(600*coef),int(600*coef))))
             
         except:
             pass
@@ -448,14 +461,15 @@ try:
             counter +=1
         
     def imgDraw(x,y):
+        global coef
         screen.blit(img, (x,y))
     def button(buttonimg,x,y,function):
-        global mousex,mousey,imgnum,screen,okclick
+        global mousex,mousey,imgnum,screen,okclick,coef
         
         buttonRect = buttonimg.get_rect()
-        screen.blit(buttonimg, (x,y))
-        buttonRect[0] = x
-        buttonRect[1] = y
+        screen.blit(buttonimg, (int(x*coef),int(y*coef)))
+        buttonRect[0] = int(coef*x)
+        buttonRect[1] = int(coef*y)
         
         if buttonRect.collidepoint (mousex, mousey) :
             
@@ -472,7 +486,7 @@ try:
                 
             
             buttonimg = colorize(buttonimg,(125,125,125))
-            screen.blit(buttonimg, (x,y))
+            screen.blit(buttonimg, (int(coef*x),int(coef*y)))
     def discardlist():
         global nametext
         nametext.pop()
@@ -494,22 +508,22 @@ try:
             toggleval.setText(str(toggle.getValue()))
             greet = font.render("Welcome to Annot Tool GUI v1.8 !", True, (0,0,0))
             greetRect = greet.get_rect()
-            greetRect.center = (450,20)
+            greetRect.center = (int(coef*450),int(coef*20))
             size = font.render("Enter model size (default : 416)", True, (0,0,0))
             sizeRect = greet.get_rect()
-            sizeRect.center = (300,380)
+            sizeRect.center = (int(coef*300),int(coef*380))
             sub = font.render("Are the images into subfolders ? (e. g images/class1/img.png)", True, (0,0,0))
             subRect = sub.get_rect()
-            subRect.center = (450,500)
+            subRect.center = (int(coef*450),int(coef*500))
             classes = font.render("Choose classes name (one class at a time)", True, (0,0,0))
             classesRect = classes.get_rect()
-            classesRect.center = (410,620)
+            classesRect.center = (int(coef*410),int(coef*620))
             percent = font.render("Percentage of images in test.txt (by default : 20%)", True, (0,0,0))
             percentRect = greet.get_rect()
-            percentRect.center = (300,255)
+            percentRect.center = (int(coef*300),int(coef*255))
             classeslist = font.render(str(nametext), True, (0,0,255))
             classeslistRect = classeslist.get_rect()
-            classeslistRect.center = (450,750)
+            classeslistRect.center = (int(coef*450),int(coef*750))
             events = pygame.event.get()
             text = textbox.getText()
             
@@ -521,7 +535,7 @@ try:
             
             path = font.render("Path to custom dataset (by default : images/'): ", True, (0,0,0))
             pathRect = greet.get_rect()
-            pathRect.center = (300,100)
+            pathRect.center = (int(coef*300),int(coef*100))
             button(browseImg,760,140,browse)
             button(pygame.transform.scale(discardImg,(60,60)),815,635,discardlist)
             pygame_widgets.update(events)
@@ -533,7 +547,7 @@ try:
             screen.blit(percent, percentRect)
             screen.blit(greet, greetRect)
             if toggle.getValue() == True:
-                blank2Rect.center = (465,1050)
+                blank2Rect.center = (int(coef*465),int(coef*1050))
                 screen.blit(blank2,blank2Rect)
             button(okImg,700,700,okmenu)
             pygame.display.flip()
@@ -594,7 +608,7 @@ try:
             pass
         try:
             img = pygame.image.load(imglist[imgnum][0])
-            img = pygame.transform.scale(img,((600,600)))
+            img = pygame.transform.scale(img,((int(coef*600),int(coef*600))))
             if resized == 0:
                 
                 PILimg = Image.open(imglist[imgnum][0])
@@ -604,20 +618,20 @@ try:
                 resized = 1
             text = font.render(imglist[imgnum][0], True, (0,0,0))
             textRect = text.get_rect()
-            textRect.center = (450,20)
+            textRect.center = (int(coef*450),int(coef*20))
             info = font.render("Space bar to delete image", True, (0,0,0))
             infoRect = info.get_rect()
-            infoRect.center = (450,700)
+            infoRect.center = (int(coef*450),int(coef*700))
             num = font.render("Image "+str(imgcounter+1)+" of "+str(len(imglist)), True, (0,0,0))
             numRect = num.get_rect()
-            numRect.center = (100,850)
+            numRect.center = (int(coef*100),int(coef*850))
             idtext = font.render("Change next box ID", True, (0,0,0))
             idtextRect = idtext.get_rect()
-            idtextRect.center = (770,200)
+            idtextRect.center = (int(coef*770),int(coef*200))
             
             nextboxid = font.render(str(currentid), True, (0,0,0))
             nextboxidRect = nextboxid.get_rect()
-            nextboxidRect.center = (760,290)
+            nextboxidRect.center = (int(coef*760),int(coef*290))
             
             
         except Exception as e:            
@@ -638,7 +652,7 @@ try:
                 firstcoord = []
                 secondcoord = []
                 textRect = text.get_rect()
-                textRect.center = (300,300)
+                textRect.center = (int(coef*300),int(coef*300))
                 button(endImg,340,700,traintestsplit)
                 button(visualizImg,60,700,visualize)
             if visualiz == 1:
@@ -726,22 +740,22 @@ try:
                                 firstcoordnew = [firstcoord[0],firstcoord[1]]
                                 secondcoordnew = [secondcoord[0],secondcoord[1]]
                                 
-                                if secondcoordnew[0] > 640:
-                                    secondcoordnew[0] = 640
-                                if secondcoordnew[1] > 640:
-                                    secondcoordnew[1] = 640
-                                if firstcoordnew[0] < 40:
-                                    firstcoordnew[0] = 40
-                                if firstcoordnew[1] < 40:
-                                    firstcoordnew[1] = 40
-                                if secondcoordnew[0] < 40:
-                                    secondcoordnew[0] = 40
-                                if secondcoordnew[1] < 40:
-                                    secondcoordnew[1] = 40
-                                if firstcoordnew[0] > 640:
-                                    firstcoordnew[0] = 640
-                                if firstcoordnew[1] > 640:
-                                    firstcoordnew[1] = 640
+                                if secondcoordnew[0] > int(640*coef):
+                                    secondcoordnew[0] = int(640*coef)
+                                if secondcoordnew[1] > int(640*coef):
+                                    secondcoordnew[1] = int(640*coef)
+                                if firstcoordnew[0] < int(40*coef):
+                                    firstcoordnew[0] = int(40*coef)
+                                if firstcoordnew[1] < int(40*coef):
+                                    firstcoordnew[1] = int(40*coef)
+                                if secondcoordnew[0] < int(40*coef):
+                                    secondcoordnew[0] = int(40*coef)
+                                if secondcoordnew[1] < int(40*coef):
+                                    secondcoordnew[1] = int(40*coef)
+                                if firstcoordnew[0] > int(640*coef):
+                                    firstcoordnew[0] = int(640*coef)
+                                if firstcoordnew[1] > int(640*coef):
+                                    firstcoordnew[1] = int(640*coef)
                                 firstcoordnew = tuple(firstcoordnew)
                                 secondcoordnew = tuple(secondcoordnew)
                                 firstcoords[imgcounter].append(firstcoordnew)
@@ -806,11 +820,11 @@ try:
             namelocal = "None"
         local = font.render(namelocal, True, (0,0,255))
         localRect = local.get_rect()
-        localRect.center = (765,355)
+        localRect.center = (int(coef*765),int(coef*355))
         screen.blit(local, localRect)
                         
         
-        imgDraw(40,40)
+        imgDraw(int(coef*40),int(coef*40))
         screen.blit(text, textRect)
         screen.blit(num, numRect)
         screen.blit(info,infoRect)
@@ -828,7 +842,7 @@ try:
             if annotfinish == 0:
                 if firstpos == False:
                     rect = (
-                        min(firstcoord[0], mousex), min(firstcoord[1], mousey),
+                        min(firstcoord[0], mousex),min(firstcoord[1], mousey),
                         abs(mousex-firstcoord[0]), abs(mousey-firstcoord[1]))
                     pygame.draw.rect(screen, (0,0,255), rect,5)
                     pygame.draw.circle(screen, (255,0,0), firstcoord, 10)
@@ -869,6 +883,10 @@ try:
                 rect = (
                     min(secondposlist[0], firstposlist[0]), min(secondposlist[1], firstposlist[1]),
                     abs(secondposlist[0]-firstposlist[0]), abs(secondposlist[1]-firstposlist[1]))
+                for val in rect:
+                    val = int(coef*val)
+                    
+                
                 pygame.draw.rect(screen, (0,0,255), rect,5)
                 
                 #button(pointImg,firstposlist[0]-20,firstposlist[1]-20,noUse)
@@ -884,11 +902,11 @@ try:
                 boxtextRect = boxtext.get_rect()
                 if secondposlist[0] - firstposlist[0] < 0:
                     
-                    boxtextRect.center = (secondposlist[0]+40,secondposlist[1]-40)
+                    boxtextRect.center = (int(coef*secondposlist[0]+40),int(coef*secondposlist[1]-40))
                 else:
                     
                     
-                    boxtextRect.center = (firstposlist[0]+40,firstposlist[1]-40)
+                    boxtextRect.center = (int(coef*firstposlist[0]+40),int(coef*firstposlist[1]-40))
                     
                 screen.blit(boxtext,boxtextRect)
                 counterlocal  +=1
