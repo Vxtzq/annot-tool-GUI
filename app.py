@@ -73,6 +73,8 @@ minusImg = pygame.image.load("ressources/-.png")
 minusImg = pygame.transform.scale(minusImg,((int(70*coef),int(70*coef))))
 pointImg = pygame.image.load("ressources/point.png")
 pointImg = pygame.transform.scale(pointImg,((int(40*coef),int(40*coef))))
+borderImg = pygame.image.load("ressources/border.png")
+borderImg = pygame.transform.scale(borderImg,((int(600*coef),int(600*coef))))
 
 specific = None
 
@@ -463,6 +465,7 @@ try:
     def imgDraw(x,y):
         global coef
         screen.blit(img, (x,y))
+        screen.blit(borderImg, (x,y))
     def button(buttonimg,x,y,function):
         global mousex,mousey,imgnum,screen,okclick,coef
         
@@ -902,11 +905,13 @@ try:
                 boxtextRect = boxtext.get_rect()
                 if secondposlist[0] - firstposlist[0] < 0:
                     
-                    boxtextRect.center = (int(coef*secondposlist[0]+40),int(coef*secondposlist[1]-40))
+                    boxtextRect.center = (secondposlist[0]+int(coef*80),secondposlist[1]-int(coef*20))
+                    #boxtextRect.center = (int(coef*boxtextRect.center[0]),int(coef*boxtextRect.center[1]))
                 else:
                     
                     
-                    boxtextRect.center = (int(coef*firstposlist[0]+40),int(coef*firstposlist[1]-40))
+                    boxtextRect.center = (firstposlist[0]+int(coef*80),firstposlist[1]-int(coef*20))
+                    #boxtextRect.center = (int(coef*boxtextRect.center[0]),int(coef*boxtextRect.center[1]))
                     
                 screen.blit(boxtext,boxtextRect)
                 counterlocal  +=1
@@ -988,6 +993,5 @@ except Exception as e:
             pygame.display.update()
         pygame.quit()
     error(str(e),specific)
-
 
 
