@@ -102,8 +102,6 @@ A preview of all the classes should be appearing under it.
 ## Error system
 If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
 
-![error](https://github.com/proplayer2020/annot-tool-GUI/assets/116555319/c8d9a88b-e351-4e08-9f63-91a0c1b7901e)
-
 Feel free to create an issue for problems/questions.
 
 ## Use a dataset that isn't in the folder named "images" of this repo
