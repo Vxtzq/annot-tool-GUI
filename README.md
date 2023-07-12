@@ -45,6 +45,7 @@ In command prompt :
 ```chmod +x annotdataGUI.sh```
 
 ```./annotdataGUI.sh```
+
 In file manager :
 
 Go into the repository and go into the properties of "annotdataGUI.Appimage" file and tick "Allow Executing File As Program"
