@@ -26,6 +26,14 @@ Then, in command prompt, enter :
 
 ```pip install -r requirements.txt```
 
+## Download useful files
+
+It is possible to download yolov4 and yolov4-tiny models here :
+
+https://github.com/proplayer2020/annot-tool-GUI/releases/download/yolo-tiny/yolov4-tiny.conv.29
+
+https://github.com/proplayer2020/annot-tool-GUI/releases/download/yolo/yolov4.weights
+
 
 # How to launch
 ## Windows
