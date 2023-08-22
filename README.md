@@ -69,7 +69,7 @@ In command prompt :
 ```sh annotdataGUI.sh```
 
 # How to use :
-See how to prepare your images here : [https://github.com/proplayer2020/annot-tool-GUI/blob/main/README.md#dataset-types](https://github.com/proplayer2020/annot-tool-GUI/tree/main#dataset-types)
+See how to prepare your images [here](https://github.com/proplayer2020/annot-tool-GUI/tree/main#dataset-types)
 
 Useful things : 
 
@@ -116,13 +116,13 @@ It is easy to add images format by modifying "replaceformat.py"
 
 A preview of all the classes should be appearing under it.
 
+## Use a dataset located elsewhere on your computer
+If the dataset used is somewhere else than in annot-data-GUI/images/*, it is possible to change its location
+in the start settings, by entering the path of the dataset (e.g. /home/user/dataset/) or clicking on "Browse".
+
+
 # Troubleshooting
 ## Error system
 If an Error pops up when the app is oppened, it is possible to report it by clicking the text underneath.
 
 Feel free to create an issue for problems/questions.
-
-## Use a dataset that isn't in the folder named "images" of this repo
-If the dataset used is somewhere else than in annot-data-GUI/images/*, it is possible to change its location
-in the start settings, by entering the path of the dataset (e.g. /home/user/dataset/) or clicking on "Browse".
-
