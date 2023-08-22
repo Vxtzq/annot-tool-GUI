@@ -96,7 +96,7 @@ Yolo : ```./darknet detector train data/obj.data data/yolo-obj.cfg data/yolov4.c
 
 Tiny yolo : ```./darknet detector train data/obj.data data/yolo-tiny-obj.cfg data/yolov4-tiny.conv.29```
 
-# Dataset types
+# Prepare dataset/images
 ## Dataset structures
 Two dataset types are supported :
 
