@@ -76,15 +76,24 @@ Useful things :
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
-Then follow instructions here : 
+# How to use generated files
 
-YOLOv4:
+After finishing the annotation, look into the "result" folder, all the files should be generated.
+To train the model, Take the obj.data file, yolo model (yolo.conv.137 or yolo-tiny.conv.29) and the .cfg file corresponding to the model (if tiny yolo, use yolo-tiny-obj.cfg), and place those into darknet/data.
 
-https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
+# Train
+## Windows
+Execute this command in the terminal, in the build/darknet/ folder :
 
-YOLOv4-tiny:
+Yolo : ```darknet.exe detector train data/obj.data data/yolo-obj.cfg data/yolo.conv.137```
 
-https://github.com/AlexeyAB/darknet#how-to-train-tiny-yolo-to-detect-your-custom-objects
+Tiny yolo : ```darknet.exe detector train data/obj.data data/yolo-tiny-obj.cfg data/yolo-tiny.conv.29```
+## Linux
+Execute this command in the terminal, in the build/darknet/ folder :
+
+Yolo : ```./darknet detector train data/obj.data data/yolo-obj.cfg data/yolov4.conv.137```
+
+Tiny yolo : ```./darknet detector train data/obj.data data/yolo-tiny-obj.cfg data/yolov4-tiny.conv.29```
 
 # Dataset types
 ## Dataset structures
