@@ -70,7 +70,7 @@ In command prompt :
 
 # How to use :
 
-Useful buttons : 
+Useful things : 
 
 ![demo](https://github.com/proplayer2020/annot-tool-GUI/assets/116555319/fd7f641b-554e-48d3-955d-41a36d41dbac)
 
