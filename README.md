@@ -69,7 +69,7 @@ In command prompt :
 ```sh annotdataGUI.sh```
 
 # How to use :
-See how to prepare your images [here](https://github.com/proplayer2020/annot-tool-GUI/tree/main#dataset-types)
+See how to prepare your images here : https://github.com/proplayer2020/annot-tool-GUI/tree/main#dataset-types
 
 Useful things : 
 
