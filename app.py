@@ -419,7 +419,8 @@ try:
                         nextclick = 1
         imgnum +=1
         if visualiz == 1:
-            if countervis < len(imglist):
+            if countervis < len(imglist)-1:
+                
                 countervis += 1
                 firstpos = False
                 secondpos = True
@@ -429,6 +430,7 @@ try:
                 nextclick =1
             else:
                 nextclick = 1
+                
             
         
     def colorize(image, new_color):
@@ -622,16 +624,18 @@ try:
     VISUALIZEFINISH = 0
 
     def plus():
-        global nextclick,currentid,okclick
-        nextclick = 1
-        currentid += 1
-        okclick = 1
+        global nextclick,currentid,okclick,visualiz
+        if visualiz == 0:
+            nextclick = 1
+            currentid += 1
+            okclick = 1
         
     def minus():
-        global nextclick,currentid,okclick
-        nextclick = 1
-        currentid -= 1
-        okclick = 1
+        global nextclick,currentid,okclick,visualiz
+        if visualiz == 0:
+            nextclick = 1
+            currentid -= 1
+            okclick = 1
     def finishvisualize():
         global VIZUALIZEFINISH
         VISUALIZEFINISH = 1
@@ -726,12 +730,13 @@ try:
                     infoRect = info.get_rect()
                     infoRect.center = (450,700)
                     try:
-                        name = imglist[countervis]
+                        namevis = imglist[countervis]
+                        
                     except:
                         finishvisualize()
                     
-                    img = pygame.image.load(name[0])
-                    img = pygame.transform.scale(img,((600,600)))
+                    img = pygame.image.load(namevis[0])
+                    img = pygame.transform.scale(img,((600*coef,600*coef)))
                     
                 else:
                     
@@ -943,11 +948,6 @@ try:
                 
                 pygame.draw.rect(screen, (0,0,255), rect,5)
                 
-                #button(pointImg,firstposlist[0]-20,firstposlist[1]-20,noUse)
-                
-                
-                
-                #button(pointImg,secondposlist[0]-20,secondposlist[1]-20,noUse)
                 for name in namesid:
                     if name[1] == boxid[imgcounter][counterlocal]:
                         namelocal = name[0]
@@ -957,13 +957,11 @@ try:
                 if secondposlist[0] - firstposlist[0] < 0:
                     
                     boxtextRect.center = (secondposlist[0]+int(coef*80),secondposlist[1]-int(coef*20))
-                    #boxtextRect.center = (int(coef*boxtextRect.center[0]),int(coef*boxtextRect.center[1]))
                 else:
                     
                     
                     boxtextRect.center = (firstposlist[0]+int(coef*80),firstposlist[1]-int(coef*20))
-                    #boxtextRect.center = (int(coef*boxtextRect.center[0]),int(coef*boxtextRect.center[1]))
-                    
+                                        
                 screen.blit(boxtext,boxtextRect)
                 counterlocal  +=1
                 
@@ -1032,7 +1030,7 @@ except Exception as e:
                     pos = event.pos
 
                     if rect.collidepoint(pos):
-                        webbrowser.open(r"https://github.com/proplayer2020/annot-data-GUI/issues/new")
+                        webbrowser.open(r"https://github.com/proplayer2020/annot-tool-GUI/issues/new")
             if rect.collidepoint(pygame.mouse.get_pos()):
                 link_color = (70, 29, 150)
 
