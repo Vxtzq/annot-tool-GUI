@@ -83,13 +83,13 @@ Once annotation/marking is finished, click on "prepare data for training", and m
 
 ## obj.data
 File where all the path of useful files for training are stored.
-### I recommend to move it to build/darknet/data/
+#### I recommend to move it to build/darknet/data/
 ## obj.names
 File where all the classes names are stored
-### keep it in result folder
+#### keep it in result folder
 ## test.txt and train.txt
 Files where all the images path are listed for training and test phase.
-### Keep it in result folder
+#### Keep it in result folder
 ## yolo-obj.cfg
 Config file of yolo
 After finishing the annotation, look into the "result" folder, all the files should be generated.
