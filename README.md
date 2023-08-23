@@ -26,7 +26,7 @@ Then, in command prompt, enter :
 
 ```pip install -r requirements.txt```
 
-```python download.py --both True```
+```python download.py --both True``` to download yolo models
 
 ## Download useful files
 
