@@ -30,7 +30,7 @@ Then, in command prompt, enter :
 
 ## Download useful files
 
-It is possible to download yolov4 and yolov4-tiny models here :
+It is possible to download yolov4 and yolov4-tiny models here, alternative to download.py:
 
 Tiny YOLO : https://github.com/proplayer2020/annot-tool-GUI/releases/download/yolo-tiny/yolov4-tiny.conv.29
 
