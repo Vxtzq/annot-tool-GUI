@@ -92,6 +92,8 @@ Files where all the images path are listed for training and test phase.
 #### Keep it in result folder
 ## yolo-obj.cfg
 Config file of yolo
+
+
 After finishing the annotation, look into the "result" folder, all the files should be generated.
 To train the model, Take the obj.data file, yolo model (yolo.conv.137 or yolo-tiny.conv.29) and the .cfg file corresponding to the model (if tiny yolo, use yolo-tiny-obj.cfg), and place those into darknet/data.
 
