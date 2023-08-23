@@ -574,9 +574,9 @@ try:
                     
             
             first = 0
-        print("sus")
+        
         file = open("result/obj.names","w")
-        print(str(namesid))
+        
         for classes in namesid:
             file.write(str(classes[0]) +"\n")
         file.close()
