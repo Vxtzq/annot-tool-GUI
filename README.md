@@ -26,6 +26,7 @@ Then, in command prompt, enter :
 
 ```pip install -r requirements.txt```
 
+```python download.py --tiny False```
 ## Download useful files
 
 It is possible to download yolov4 and yolov4-tiny models here :
