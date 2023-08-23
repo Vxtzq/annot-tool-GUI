@@ -15,7 +15,7 @@ def process_file(nb_classes, width, height,filename,learning_rate):
         if "filters = 255" in line or "filters=255" in line:
             if not "#" in line:
                 lines[index] = "filters = " + str((nb_classes+5)*3)
-                print("filters = " + str((nb_classes+5)*3))
+                
         if "classes" in line:
             if not "#" in line:
                 lines[index] = "classes = " + str(nb_classes)
@@ -34,7 +34,7 @@ def process_file(nb_classes, width, height,filename,learning_rate):
         if "steps" in line:
             if not "#" in line:
                 lines[index] = "steps=" + str(int((nb_classes*2000)*80/100)) + "," + str(int((nb_classes*2000)*90/100))
-                print("steps=" + str(int((nb_classes*2000)*80/100)) + "," + str(int((nb_classes*2000)*90/100)))
+                
         index += 1
     file = open(filename,"w")
     for line in lines:
