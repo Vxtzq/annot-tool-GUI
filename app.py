@@ -7,6 +7,9 @@ import time
 import gc
 import sys
 
+from settings import *
+from managecfg import *
+
 from screeninfo import get_monitors
 
 for m in get_monitors():
@@ -247,6 +250,7 @@ try:
             on = False
         else:
             on = False
+        
         okclick = 1
 
 
@@ -492,7 +496,8 @@ try:
             screen.blit(buttonimg, (int(coef*x),int(coef*y)))
     def discardlist():
         global nametext
-        nametext.pop()
+        if len(nametext) > 0:
+            nametext.pop()
         
     first = 1
     def menu():
@@ -512,7 +517,7 @@ try:
             greet = font.render("Welcome to Annot Tool GUI v1.8 !", True, (0,0,0))
             greetRect = greet.get_rect()
             greetRect.center = (int(coef*450),int(coef*20))
-            size = font.render("Enter model size (default : 416)", True, (0,0,0))
+            size = font.render("Enter image size (default : 416)", True, (0,0,0))
             sizeRect = greet.get_rect()
             sizeRect.center = (int(coef*300),int(coef*380))
             sub = font.render("Are the images into subfolders ? (e. g images/class1/img.png)", True, (0,0,0))
@@ -524,7 +529,8 @@ try:
             percent = font.render("Percentage of images in test.txt (by default : 20%)", True, (0,0,0))
             percentRect = greet.get_rect()
             percentRect.center = (int(coef*300),int(coef*255))
-            classeslist = font.render(str(nametext), True, (0,0,255))
+            classeslist = font.render("classes : "+str(nametext), True, (0,0,255))
+            
             classeslistRect = classeslist.get_rect()
             classeslistRect.center = (int(coef*450),int(coef*750))
             events = pygame.event.get()
@@ -568,7 +574,27 @@ try:
                     
             
             first = 0
-
+        print("sus")
+        file = open("result/obj.names","w")
+        print(str(namesid))
+        for classes in namesid:
+            file.write(str(classes[0]) +"\n")
+        file.close()
+        file = open("result/obj.data","w")
+        
+        
+        file.write("classes = "+str(len(namesid)) +"\n")
+        file.write("train = "+str(TRAIN_LOC) +"\n")
+        file.write("test = "+str(TEST_LOC) +"\n")
+        file.write("names = "+str(NAMES) +"\n")
+        file.write("backup = "+str(BACKUP_LOC) +"\n")
+        file.write("weights = "+str(WEIGHTS_LOC) +"\n")
+        
+        file.close()
+        if YOLO_TINY == False:
+            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-obj.cfg",0.001)
+        else:
+            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-tiny-obj.cfg",0.001)
     VISUALIZEFINISH = 0
 
     def plus():
