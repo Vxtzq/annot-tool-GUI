@@ -31,7 +31,7 @@ tkinter.Tk().withdraw()
 
 gc.enable()
 
-
+finish = 0
 
 resized = 0
 pygame.init()
@@ -196,6 +196,26 @@ try:
     def okmenu():
         global on, text,okclick,namesid,toggle,imglist,sizebox,imgsize
         
+        file = open("result/obj.names","w")
+            
+        for classes in namesid:
+            file.write(str(classes[0]) +"\n")
+        file.close()
+        file = open("result/obj.data","w")
+        
+        
+        file.write("classes = "+str(len(namesid)) +"\n")
+        file.write("train = "+str(TRAIN_LOC) +"\n")
+        file.write("test = "+str(TEST_LOC) +"\n")
+        file.write("names = "+str(NAMES) +"\n")
+        file.write("backup = "+str(BACKUP_LOC) +"\n")
+        file.write("weights = "+str(WEIGHTS_LOC) +"\n")
+        
+        file.close()
+        if YOLO_TINY == False:
+            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-obj.cfg",0.001)
+        else:
+            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-tiny-obj.cfg",0.001)
         
         if sizebox.getText() != "":
             
@@ -439,7 +459,8 @@ try:
             pass
     imgcounter = 0 
     def traintestsplit():
-        global testpercent,imglist
+        
+        global testpercent,imglist,finish
         counter = 0
         alltxt = []
         random.shuffle(imglist)
@@ -465,7 +486,7 @@ try:
             name = imglist[counter][0]
             file.write(os.path.abspath(name)+"\n")
             counter +=1
-        
+        finish = 1
     def imgDraw(x,y):
         global coef
         screen.blit(img, (x,y))
@@ -498,7 +519,29 @@ try:
         global nametext
         if len(nametext) > 0:
             nametext.pop()
-        
+    def finishall():
+        onfinish = True
+        while onfinish:
+            
+            screen.fill((255,255,255))
+            screen.blit(bg, bgRect)
+            
+            greet = font.render("Data is ready, you can now close this window", True, (0,0,0))
+            greetRect = greet.get_rect()
+            greetRect.center = (int(coef*450),int(coef*450))
+            
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    onfinish = False
+                    quit()
+            
+            
+            screen.blit(greet, greetRect)
+            
+            pygame.display.flip()
+            pygame.display.update()
     first = 1
     def menu():
         global textbox,first,output,on,text,okImg,mousex,mousey,testpercent,toggle,nametext,namesid,blank2,blank2Rect
@@ -575,26 +618,7 @@ try:
             
             first = 0
         
-        file = open("result/obj.names","w")
-        
-        for classes in namesid:
-            file.write(str(classes[0]) +"\n")
-        file.close()
-        file = open("result/obj.data","w")
-        
-        
-        file.write("classes = "+str(len(namesid)) +"\n")
-        file.write("train = "+str(TRAIN_LOC) +"\n")
-        file.write("test = "+str(TEST_LOC) +"\n")
-        file.write("names = "+str(NAMES) +"\n")
-        file.write("backup = "+str(BACKUP_LOC) +"\n")
-        file.write("weights = "+str(WEIGHTS_LOC) +"\n")
-        
-        file.close()
-        if YOLO_TINY == False:
-            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-obj.cfg",0.001)
-        else:
-            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-tiny-obj.cfg",0.001)
+            
     VISUALIZEFINISH = 0
 
     def plus():
@@ -630,7 +654,8 @@ try:
         screen.fill((255, 255, 255))
         screen.blit(bg, bgRect)
         menu()
-        
+        if finish == 1:
+            finishall()
         try:
             pass
         except:
@@ -670,7 +695,7 @@ try:
                 annotfinish = 1
                 info = font.render("", True, (0,0,0))
                 img = pygame.image.load("ressources/blank.png")
-                img = pygame.transform.scale(img,((600,600)))
+                img = pygame.transform.scale(img,((600*coef,600*coef)))
                 num = font.render("", True, (0,0,0))
                 numRect = num.get_rect()
                 numRect.center = (100,850)
