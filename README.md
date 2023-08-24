@@ -36,7 +36,7 @@ Then, in command prompt, enter :
 ### Tiny Yolo
 If you want to work with tiny yolo, you need to change it in settings.py
 
-```5 YOLO_TINY = True```
+line 5 : ```YOLO_TINY = True``` instead of False
 
 
 
