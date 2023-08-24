@@ -32,8 +32,7 @@ Then, in command prompt, enter :
 
 ```python download.py --tiny True``` to download just tiny model and weights
 
-## necessary changes
-### Tiny Yolo
+# Work with Tiny YOLO
 If you want to work with tiny yolo, you need to change it in settings.py
 
 line 5 : ```YOLO_TINY = True``` instead of False
