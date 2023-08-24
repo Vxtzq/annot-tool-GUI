@@ -26,15 +26,18 @@ Then, in command prompt, enter :
 
 ```pip install -r requirements.txt```
 
-```python download.py --both True``` to download yolo models
+```python download.py --both True``` to download yolo models and weights, necessary for training.
 
-## Download useful files
+#### OR
 
-It is possible to download yolov4 and yolov4-tiny models here, alternatively to download.py:
+```python download.py --tiny True``` to download just tiny model and weights
 
-Tiny YOLO : https://github.com/proplayer2020/annot-tool-GUI/releases/download/yolo-tiny/yolov4-tiny.conv.29
+## necessary changes
+### Tiny Yolo
+If you want to work with tiny yolo, you need to change it in settings.py
 
-YOLO : https://github.com/proplayer2020/annot-tool-GUI/releases/download/yolo/yolov4.conv.137
+```5 YOLO_TINY = True```
+
 
 
 # How to launch
