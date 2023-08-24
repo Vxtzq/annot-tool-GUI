@@ -32,13 +32,6 @@ Then, in command prompt, enter :
 
 ```python download.py --tiny True``` to download just tiny model and weights
 
-# Work with Tiny YOLO
-If you want to work with tiny yolo, you need to change it in settings.py
-
-line 5 : ```YOLO_TINY = True``` instead of False
-
-You can also change a bunch of other things in settings.py, just dont touch to the second section.
-
 # How to launch
 ## Windows
 
@@ -94,10 +87,20 @@ Files where all the images path are listed for training and test phase.
 #### Keep it in result folder
 ## yolo-obj.cfg
 Config file of yolo
+#### I recommend to move it to build/darknet/data/
+## yolov4-tiny.conv.29 and yolov4.conv.137
+Yolo models.
+#### I recommend to move those to build/darknet/data/
+## yolov4.weights and yolov4-tiny.weights
+Weights of the models that will be used for training
+#### Keep those in the result folder
 
+# Work with Tiny YOLO
+If you want to work with tiny yolo, you need to change it in settings.py
 
-After finishing the annotation, look into the "result" folder, all the files should be generated.
-To train the model, Take the obj.data file, yolo model (yolo.conv.137 or yolo-tiny.conv.29) and the .cfg file corresponding to the model (if tiny yolo, use yolo-tiny-obj.cfg), and place those into darknet/data.
+line 5 : ```YOLO_TINY = True``` instead of False
+
+You can also change a bunch of other things in settings.py, just dont touch to the second section.
 
 # Train commands ideas
 ## Windows
