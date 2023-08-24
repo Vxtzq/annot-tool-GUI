@@ -38,7 +38,7 @@ If you want to work with tiny yolo, you need to change it in settings.py
 
 line 5 : ```YOLO_TINY = True``` instead of False
 
-
+You can also change a bunch of other things in settings.py, just dont touch to the second section.
 
 # How to launch
 ## Windows
