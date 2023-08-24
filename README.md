@@ -78,7 +78,7 @@ Once annotation/marking is finished, click on "prepare data for training", and m
 
 ## obj.data
 File where all the path of useful files for training are stored.
-#### I recommend to move it to build/darknet/data/
+#### Move it to build/darknet/data/
 ## obj.names
 File where all the classes names are stored
 #### keep it in result folder
@@ -87,10 +87,10 @@ Files where all the images path are listed for training and test phase.
 #### Keep it in result folder
 ## yolo-obj.cfg
 Config file of yolo
-#### I recommend to move it to build/darknet/data/
+#### Move it to build/darknet/data/
 ## yolov4-tiny.conv.29 and yolov4.conv.137
 Yolo models.
-#### I recommend to move those to build/darknet/data/
+#### Move those to build/darknet/data/
 ## yolov4.weights and yolov4-tiny.weights
 Weights of the models that will be used for training
 #### Keep those in the result folder
