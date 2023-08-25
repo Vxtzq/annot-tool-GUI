@@ -79,30 +79,28 @@ Once annotation/marking is finished, click on "prepare data for training", and m
 ## obj.data
 File where all the path of useful files for training are stored.
 #### Move it to build/darknet/data/
+
 ## obj.names
 File where all the classes names are stored
 #### keep it in result folder
+
 ## test.txt and train.txt
 Files where all the images path are listed for training and test phase.
-#### Keep it in result folder
+#### Keep those in result folder
+
 ## yolo-obj.cfg
 Config file of yolo
 #### Move it to build/darknet/data/
+
 ## yolov4-tiny.conv.29 and yolov4.conv.137
 Yolo models.
 #### Move those to build/darknet/data/
+
 ## yolov4.weights and yolov4-tiny.weights
 Weights of the models that will be used for training
 #### Keep those in the result folder
 
-# Work with Tiny YOLO
-If you want to work with tiny yolo, you need to change it in settings.py
-
-line 5 : ```YOLO_TINY = True``` instead of False
-
-You can also change a bunch of other things in settings.py, just dont touch to the second section.
-
-# Train commands ideas
+# Train commands with the steps above
 ## Windows
 
 Yolo : ```darknet.exe detector train data/obj.data data/yolo-obj.cfg data/yolo.conv.137```
