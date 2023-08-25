@@ -6,7 +6,7 @@ Inspired and more compact version of https://github.com/proplayer2020/annot_data
 
 # How to install
 
-This repository works with "darknet" YOLO, here is the link :
+This repository works with "darknet" YOLOv4, here is the link :
 
 https://github.com/AlexeyAB/darknet
 
