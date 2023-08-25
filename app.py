@@ -182,13 +182,13 @@ try:
 
     else:
         toggle = Toggle(screen, int(350*coef), int(550*coef), int(100*coef), int(25*coef),startOn=True)
-    modeltoggle = Toggle(screen, int(270*coef), int(800*coef), int(40*coef), int(25*coef),startOn=True)
+    modeltoggle = Toggle(screen, int(270*coef), int(840*coef), int(40*coef), int(25*coef),startOn=False)
 
     slider = Slider(screen, int(100*coef), int(300*coef), int(700*coef), int(40*coef), min=1, max=99, step=1, handleRadius=20,handleColour=(0,150,0))
     slider.setValue(20)
     val = TextBox(screen, int(830*coef), int(300*coef), int(50*coef), int(50*coef), fontSize=int(coef*30))
     toggleval = TextBox(screen, int(500*coef), int(540*coef), int(80*coef), int(50*coef), fontSize=int(coef*30))
-    modeltoggleval = TextBox(screen, int(350*coef), int(790*coef), int(150*coef), int(50*coef), fontSize=int(coef*40))
+    modeltoggleval = TextBox(screen, int(350*coef), int(830*coef), int(150*coef), int(50*coef), fontSize=int(coef*40))
 
     testpercent = 5
     on = True
@@ -503,7 +503,7 @@ try:
         
     first = 1
     def menu():
-        global modeltoggle,modeltoggleval,textbox,first,output,on,text,okImg,mousex,mousey,testpercent,toggle,nametext,namesid,blank2,blank2Rect
+        global YOLO_TINY,modeltoggle,modeltoggleval,textbox,first,output,on,text,okImg,mousex,mousey,testpercent,toggle,nametext,namesid,blank2,blank2Rect
         
         model = ""
         while on:
@@ -518,7 +518,7 @@ try:
             
             val.setText(testpercent)
             toggleval.setText(str(toggle.getValue()))
-            if modeltoggle.getValue() == True:
+            if modeltoggle.getValue() == False:
                 model = "regular"
                 YOLO_TINY = False
             else:
@@ -548,7 +548,7 @@ try:
             yolomodel = font.render("yolo model type : ", True, (0,0,0))
             
             yolomodelRect = yolomodel.get_rect()
-            yolomodelRect.center = (int(coef*150),int(coef*810))
+            yolomodelRect.center = (int(coef*130),int(coef*855))
             events = pygame.event.get()
             text = textbox.getText()
             
@@ -578,7 +578,7 @@ try:
                 screen.blit(blank2,blank2Rect)
             
             screen.blit(yolomodel, yolomodelRect)
-            button(okImg,700,700,okmenu)
+            button(okImg,730,750,okmenu)
             pygame.display.flip()
             pygame.display.update()
         if first == 1:
