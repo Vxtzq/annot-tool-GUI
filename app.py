@@ -31,7 +31,7 @@ tkinter.Tk().withdraw()
 
 gc.enable()
 
-
+finish = 0
 
 resized = 0
 pygame.init()
@@ -65,7 +65,7 @@ okImg = pygame.transform.scale(okImg,((int(150*coef),int(150*coef))))
 plusImg = pygame.image.load("ressources/+.png")
 plusImg = pygame.transform.scale(plusImg,((int(70*coef),int(70*coef))))
 blank2 = pygame.image.load("ressources/bg.jpg")
-blank2 = pygame.transform.scale(blank2,((int(1200*coef),int(190*coef))))
+blank2 = pygame.transform.scale(blank2,((int(1200*coef),int(900*coef))))
 blank2Rect = blank2.get_rect()
 
 browseImg = pygame.image.load("ressources/browse.png")
@@ -171,10 +171,10 @@ try:
     textbox = TextBox(screen, int(50*coef), int(150*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=output, radius=10, borderThickness=5, placeholderText="Your path here")
-    textboxlist = TextBox(screen, int(50*coef), int(650*coef), int(750*coef), int(40*coef), fontSize=int(coef*30),
+    textboxlist = TextBox(screen, int(100*coef), int(650*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="Your path here")
-    sizebox = TextBox(screen, int(50*coef), int(420*coef), int(800*coef), int(40*coef), fontSize=int(coef*30),
+    sizebox = TextBox(screen, int(100*coef), int(420*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="size")
     if namesid[0][0] == '@':
@@ -182,13 +182,11 @@ try:
 
     else:
         toggle = Toggle(screen, int(350*coef), int(550*coef), int(100*coef), int(25*coef),startOn=True)
-    modeltoggle = Toggle(screen, int(270*coef), int(840*coef), int(40*coef), int(25*coef),startOn=False)
 
     slider = Slider(screen, int(100*coef), int(300*coef), int(700*coef), int(40*coef), min=1, max=99, step=1, handleRadius=20,handleColour=(0,150,0))
     slider.setValue(20)
     val = TextBox(screen, int(830*coef), int(300*coef), int(50*coef), int(50*coef), fontSize=int(coef*30))
     toggleval = TextBox(screen, int(500*coef), int(540*coef), int(80*coef), int(50*coef), fontSize=int(coef*30))
-    modeltoggleval = TextBox(screen, int(350*coef), int(830*coef), int(150*coef), int(50*coef), fontSize=int(coef*40))
 
     testpercent = 5
     on = True
@@ -198,6 +196,28 @@ try:
     def okmenu():
         global on, text,okclick,namesid,toggle,imglist,sizebox,imgsize
         
+        file = open("result/obj.names","w")
+            
+        for classes in namesid:
+            file.write(str(classes[0]) +"\n")
+        file.close()
+        file = open("result/obj.data","w")
+        
+        
+        file.write("classes = "+str(len(namesid)) +"\n")
+        file.write("train = "+str(TRAIN_LOC) +"\n")
+        file.write("test = "+str(TEST_LOC) +"\n")
+        file.write("names = "+str(NAMES) +"\n")
+        file.write("backup = "+str(BACKUP_LOC) +"\n")
+        if YOLO_TINY == True:
+            file.write("weights = "+str(TINY_WEIGHTS_LOC) +"\n")
+        else:
+            file.write("weights = "+str(WEIGHTS_LOC) +"\n")
+        file.close()
+        if YOLO_TINY == False:
+            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-obj.cfg",0.001)
+        else:
+            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-tiny-obj.cfg",0.001)
         
         if sizebox.getText() != "":
             
@@ -441,7 +461,8 @@ try:
             pass
     imgcounter = 0 
     def traintestsplit():
-        global testpercent,imglist
+        
+        global testpercent,imglist,finish
         counter = 0
         alltxt = []
         random.shuffle(imglist)
@@ -467,7 +488,7 @@ try:
             name = imglist[counter][0]
             file.write(os.path.abspath(name)+"\n")
             counter +=1
-        
+        finish = 1
     def imgDraw(x,y):
         global coef
         screen.blit(img, (x,y))
@@ -500,12 +521,34 @@ try:
         global nametext
         if len(nametext) > 0:
             nametext.pop()
-        
+    def finishall():
+        onfinish = True
+        while onfinish:
+            
+            screen.fill((255,255,255))
+            screen.blit(bg, bgRect)
+            
+            greet = font.render("Data is ready, you can now close this window", True, (0,0,0))
+            greetRect = greet.get_rect()
+            greetRect.center = (int(coef*450),int(coef*450))
+            
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    onfinish = False
+                    quit()
+            
+            
+            screen.blit(greet, greetRect)
+            
+            pygame.display.flip()
+            pygame.display.update()
     first = 1
     def menu():
-        global YOLO_TINY,modeltoggle,modeltoggleval,textbox,first,output,on,text,okImg,mousex,mousey,testpercent,toggle,nametext,namesid,blank2,blank2Rect
+        global textbox,first,output,on,text,okImg,mousex,mousey,testpercent,toggle,nametext,namesid,blank2,blank2Rect
         
-        model = ""
+        
         while on:
             
             screen.fill((255,255,255))
@@ -513,18 +556,9 @@ try:
             mousex,mousey = pygame.mouse.get_pos()
             testpercent = slider.getValue()
             togglevalue = toggle.getValue()
-            modeltogglevalue = modeltoggle.getValue()
-            
             
             val.setText(testpercent)
             toggleval.setText(str(toggle.getValue()))
-            if modeltoggle.getValue() == False:
-                model = "regular"
-                YOLO_TINY = False
-            else:
-                model = "tiny"
-                YOLO_TINY = True
-            modeltoggleval.setText(model)
             greet = font.render("Welcome to Annot Tool GUI v1.8 !", True, (0,0,0))
             greetRect = greet.get_rect()
             greetRect.center = (int(coef*450),int(coef*20))
@@ -544,11 +578,6 @@ try:
             
             classeslistRect = classeslist.get_rect()
             classeslistRect.center = (int(coef*450),int(coef*750))
-            
-            yolomodel = font.render("yolo model type : ", True, (0,0,0))
-            
-            yolomodelRect = yolomodel.get_rect()
-            yolomodelRect.center = (int(coef*130),int(coef*855))
             events = pygame.event.get()
             text = textbox.getText()
             
@@ -563,7 +592,7 @@ try:
             pathRect.center = (int(coef*300),int(coef*100))
             button(browseImg,760,140,browse)
             button(pygame.transform.scale(discardImg,(60,60)),815,635,discardlist)
-            
+            pygame_widgets.update(events)
             screen.blit(path, pathRect)
             screen.blit(size, sizeRect)
             screen.blit(classeslist, classeslistRect)
@@ -571,14 +600,10 @@ try:
             screen.blit(sub, subRect)
             screen.blit(percent, percentRect)
             screen.blit(greet, greetRect)
-            pygame_widgets.update(events)
-            
             if toggle.getValue() == True:
-                blank2Rect.center = (int(coef*465),int(coef*690))
+                blank2Rect.center = (int(coef*465),int(coef*1050))
                 screen.blit(blank2,blank2Rect)
-            
-            screen.blit(yolomodel, yolomodelRect)
-            button(okImg,730,750,okmenu)
+            button(okImg,700,700,okmenu)
             pygame.display.flip()
             pygame.display.update()
         if first == 1:
@@ -595,26 +620,7 @@ try:
             
             first = 0
         
-        file = open("result/obj.names","w")
-        
-        for classes in namesid:
-            file.write(str(classes[0]) +"\n")
-        file.close()
-        file = open("result/obj.data","w")
-        
-        
-        file.write("classes = "+str(len(namesid)) +"\n")
-        file.write("train = "+str(TRAIN_LOC) +"\n")
-        file.write("test = "+str(TEST_LOC) +"\n")
-        file.write("names = "+str(NAMES) +"\n")
-        file.write("backup = "+str(BACKUP_LOC) +"\n")
-        file.write("weights = "+str(WEIGHTS_LOC) +"\n")
-        
-        file.close()
-        if YOLO_TINY == False:
-            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-obj.cfg",0.001)
-        else:
-            process_file(len(namesid),int(imgsize), int(imgsize),"result/yolo-tiny-obj.cfg",0.001)
+            
     VISUALIZEFINISH = 0
 
     def plus():
@@ -650,7 +656,8 @@ try:
         screen.fill((255, 255, 255))
         screen.blit(bg, bgRect)
         menu()
-        
+        if finish == 1:
+            finishall()
         try:
             pass
         except:
@@ -690,7 +697,7 @@ try:
                 annotfinish = 1
                 info = font.render("", True, (0,0,0))
                 img = pygame.image.load("ressources/blank.png")
-                img = pygame.transform.scale(img,((600,600)))
+                img = pygame.transform.scale(img,((600*coef,600*coef)))
                 num = font.render("", True, (0,0,0))
                 numRect = num.get_rect()
                 numRect.center = (100,850)
@@ -722,11 +729,12 @@ try:
                     infoRect.center = (450,700)
                     try:
                         name = imglist[countervis]
+                        img = pygame.image.load(name[0])
+                        img = pygame.transform.scale(img,((600*coef,600*coef)))
+                    
                     except:
                         finishvisualize()
                     
-                    img = pygame.image.load(name[0])
-                    img = pygame.transform.scale(img,((600,600)))
                     
                 else:
                     
@@ -1041,3 +1049,4 @@ except Exception as e:
     error(str(e),specific)
 
 
+ 
