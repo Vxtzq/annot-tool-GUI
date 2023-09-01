@@ -171,10 +171,10 @@ try:
     textbox = TextBox(screen, int(50*coef), int(150*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=output, radius=10, borderThickness=5, placeholderText="Your path here")
-    textboxlist = TextBox(screen, int(50*coef), int(650*coef), int(750*coef), int(40*coef), fontSize=int(coef*30),
+    textboxlist = TextBox(screen, int(50*coef), int(650*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="Your path here")
-    sizebox = TextBox(screen, int(50*coef), int(420*coef), int(800*coef), int(40*coef), fontSize=int(coef*30),
+    sizebox = TextBox(screen, int(50*coef), int(420*coef), int(700*coef), int(40*coef), fontSize=int(coef*30),
                       borderColour=(0, 0, 0), textColour=(0, 200, 0),
                       onSubmit=func, radius=10, borderThickness=5, placeholderText="size")
     if namesid[0][0] == '@':
@@ -184,9 +184,9 @@ try:
         toggle = Toggle(screen, int(350*coef), int(550*coef), int(100*coef), int(25*coef),startOn=True)
     modeltoggle = Toggle(screen, int(270*coef), int(840*coef), int(40*coef), int(25*coef),startOn=False)
 
-    slider = Slider(screen, int(100*coef), int(300*coef), int(700*coef), int(40*coef), min=1, max=99, step=1, handleRadius=20,handleColour=(0,150,0))
+    slider = Slider(screen, int(70*coef), int(300*coef), int(700*coef), int(40*coef), min=1, max=99, step=1, handleRadius=20,handleColour=(0,150,0))
     slider.setValue(20)
-    val = TextBox(screen, int(830*coef), int(300*coef), int(50*coef), int(50*coef), fontSize=int(coef*30))
+    val = TextBox(screen, int(800*coef), int(300*coef), int(50*coef), int(50*coef), fontSize=int(coef*30))
     toggleval = TextBox(screen, int(500*coef), int(540*coef), int(80*coef), int(50*coef), fontSize=int(coef*30))
     modeltoggleval = TextBox(screen, int(350*coef), int(825*coef), int(150*coef), int(50*coef), fontSize=int(coef*40))
 
@@ -268,11 +268,13 @@ try:
 
 
     def discard():
-        global imgcounter,visualiz,nextclick,firstcoords,secondcoords,boxid
+        global imgcounter,visualiz,nextclick,firstcoords,secondcoords,boxid,currentid
         if visualiz == 0:
             firstcoords[imgcounter] = []
             secondcoords[imgcounter] = []
             boxid[imgcounter] = []
+        if currentid == None:
+            currentid = 0
         nextclick = 1
         
         
@@ -481,11 +483,11 @@ try:
         buttonRect[1] = int(coef*y)
         
         if buttonRect.collidepoint (mousex, mousey) :
-            
+            okclick = 1
             if pygame.mouse.get_pressed()[0]:
                 
                 okclick = 1
-                time.sleep(0.2)
+                
                 
                 function()
 
@@ -546,7 +548,10 @@ try:
             
             
             val.setText(testpercent)
-            toggleval.setText(str(toggle.getValue()))
+            if str(toggle.getValue()) == "True":
+                toggleval.setText("yes")
+            if str(toggle.getValue()) == "False":
+                toggleval.setText("no")
             if modeltoggle.getValue() == False:
                 model = "regular"
                 YOLO_TINY = False
@@ -591,7 +596,7 @@ try:
             pathRect = greet.get_rect()
             pathRect.center = (int(coef*300),int(coef*100))
             button(browseImg,760,140,browse)
-            button(pygame.transform.scale(discardImg,(60,60)),815,635,discardlist)
+            button(pygame.transform.scale(discardImg,(60,60)),765,645,discardlist)
             
             screen.blit(path, pathRect)
             screen.blit(size, sizeRect)
@@ -651,12 +656,14 @@ try:
 
     def plus():
         global nextclick,currentid,okclick
+        
         nextclick = 1
         currentid += 1
         okclick = 1
         
     def minus():
         global nextclick,currentid,okclick
+        
         nextclick = 1
         currentid -= 1
         okclick = 1
@@ -678,7 +685,7 @@ try:
     boxname = []
 
     while running:
-
+        print(currentid)
         screen.fill((255, 255, 255))
         screen.blit(bg, bgRect)
         menu()
@@ -850,10 +857,9 @@ try:
                     
                     previousclick = 0
                     nextclick = 0
-                    
-                
                     okclick = 0
-                            
+            if okclick == 1:
+                okclick = 0
             if event.type == pygame.KEYDOWN:
                 if visualiz == 0:
                     if annotfinish == 0:
@@ -897,9 +903,9 @@ try:
                 except:
                     pass
         if currentid > len(namesid)-1:
-            namelocal = "None"
+            currentid = len(namesid)-1
         if currentid < 0:
-            namelocal = "None"
+            currentid = 0
         local = font.render(namelocal, True, (0,0,255))
         localRect = local.get_rect()
         localRect.center = (int(coef*765),int(coef*355))
