@@ -685,7 +685,7 @@ try:
     boxname = []
 
     while running:
-        print(currentid)
+        
         screen.fill((255, 255, 255))
         screen.blit(bg, bgRect)
         menu()
