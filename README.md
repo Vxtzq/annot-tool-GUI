@@ -98,7 +98,9 @@ Weights of the models that will be used for training
 
 
 # Train commands with the steps above
+Those commands should work with the steps above
 ## Windows
+Execute this command in the terminal, in the build/darknet/ folder :
 
 Yolo : ```darknet.exe detector train data/obj.data data/yolo-obj.cfg data/yolo.conv.137```
 
