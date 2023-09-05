@@ -63,7 +63,7 @@ def Download_File(url,save):
         site = urllib.request.urlopen(download_url)
         #getting the meta data
         meta = site.info()
-        print("size :", meta.get("Content-Length") + " B")
+        
         
         #where the file will be saved
         save_location = save
