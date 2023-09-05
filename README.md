@@ -75,7 +75,7 @@ Once annotation/marking is finished, click on "prepare data for training", and m
 ## obj.data
 File where all the path of useful files for training are stored.
 
-Move it to build/darknet/data/
+! Move it to build/darknet/data/
 
 ## obj.names
 File where all the classes names are stored
