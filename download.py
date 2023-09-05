@@ -1,14 +1,9 @@
-import argparse
-from glob import glob
 import pygame_widgets
 import urllib.request
-import time
 import sys 
 import pygame
 from pygame.locals import *
 from pygame_widgets.progressbar import ProgressBar
-
-startTime = time.time()
 
 currentfile = ""
 error = 0
