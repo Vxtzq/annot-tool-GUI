@@ -26,7 +26,7 @@ Then, in command prompt, enter :
 
 ```pip install -r requirements.txt```
 
-```python download.py``` to download yolo models and weights, necessary for training.
+```python download.py``` to download yolo models and weights, necessary for training, or simply use the .AppImage for linux.
 
 # How to launch
 ## Windows
