@@ -2,7 +2,7 @@
 
 Simple app to annotate data for YOLOv4. Made in pygame.
 
-Inspired and more compact version of https://github.com/proplayer2020/annot_data
+Inspired and more compact version of https://github.com/Vxtzq/annot_data
 
 # What's new
 You can now give the path to the darknet directory in settings.py, and the result files will be directly stored in it.
