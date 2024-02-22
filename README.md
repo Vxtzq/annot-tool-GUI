@@ -69,7 +69,7 @@ See how to prepare your images here : https://github.com/proplayer2020/annot-too
 
 Useful things : 
 
-![demo](https://github.com/proplayer2020/annot-tool-GUI/assets/116555319/fd7f641b-554e-48d3-955d-41a36d41dbac)
+![demo](https://github.com/Vxtzq/annot-tool-GUI/assets/116555319/fd7f641b-554e-48d3-955d-41a36d41dbac)
 
 Once annotation/marking is finished, click on "prepare data for training", and move the files (train.txt and test.txt) generated in the folder named "result" to build/darknet/data
 
