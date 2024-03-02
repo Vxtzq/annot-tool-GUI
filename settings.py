@@ -12,7 +12,7 @@ BACKUP_LOC = "result/backup/"
 
 WEIGHTS_LOC = "result/yolov4.weights"
 CFG_LOC = "result/yolo-obj.cfg"
-
+DARKNET_LOC = ""
 TINY_WEIGHTS_LOC = "result/yolov4-tiny.weights"
 TINY_CFG_LOC = "result/yolo-tiny-obj.cfg"
 
