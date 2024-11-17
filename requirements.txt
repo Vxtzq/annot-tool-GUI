@@ -3,3 +3,4 @@ pygame==2.1.2
 pygame_widgets==1.0.0
 screeninfo
 glob2
+opencv-python
